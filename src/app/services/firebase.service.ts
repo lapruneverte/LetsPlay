@@ -12,6 +12,10 @@ export class FirebaseService {
 
   getBoard(name: string){
     return this.db.collection('board',ref => ref.where('name', '==', name)).valueChanges();
+    /* var reff = this.db.collection('board');
+    var bb = reff.doc('dT4aJTEaxtPb0TLeiVR6');
+    var cc = reff.doc('dT4aJTEaxtPb0TLeiVR6').collection('tokens');
+    return bb.valueChanges() */;
   }
 
   getAvatars(){

@@ -23,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatButtonModule,
     MatInputModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ],
   providers: [FirebaseService, EditUserResolver],
   bootstrap: [AppComponent],

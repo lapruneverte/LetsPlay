@@ -1,1 +1,4 @@
-<img [src]=boardGame.link class="board-image">
+<img id="board-game" [src]=boardGame.link class="board-image">
+<div *ngFor="let token of tokens" class="token-image" cdkDrag>
+    <img [src]=token.link width="100%">
+</div>
