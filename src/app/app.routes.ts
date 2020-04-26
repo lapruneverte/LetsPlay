@@ -6,7 +6,7 @@ import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { BoardComponent } from './board/board.component';
 
 export const rootRouterConfig: Routes = [
-  { path: '', component: BoardComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'new-user', component: NewUserComponent },
   { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver} }

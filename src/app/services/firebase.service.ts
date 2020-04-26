@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { BoardComponent } from '../board/board.component';
 
 @Injectable({
   providedIn: 'root'

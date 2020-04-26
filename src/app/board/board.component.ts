@@ -12,10 +12,6 @@ export class BoardComponent implements OnInit {
   boardGame: BoardModel = new BoardModel();
   constructor(
       public firebaseService: FirebaseService,
-      // private route: ActivatedRoute,
-      // private fb: FormBuilder,
-      // private router: Router,
-      // public dialog: MatDialog
   ) { }
   
   ngOnInit() {
@@ -23,11 +19,15 @@ export class BoardComponent implements OnInit {
   }
 
   getData(){
-    this.firebaseService.getBoard('Test Game')
+    this.firebaseService.getBoard('Test Game 1')
     .subscribe((result: any) => {
-      this.boardGame.id = result[0].id;
-      this.boardGame.name = result[0].name;
-      this.boardGame.link = result[0].link;
+      if (result.length == 1) {
+        this.boardGame.id = result[0].id;
+        this.boardGame.name = result[0].name;
+        this.boardGame.link = result[0].link;
+      } else {
+        console.log("Board Component: found 0 or more than 1 board games with that name...");
+      }
     })
   }
 }
