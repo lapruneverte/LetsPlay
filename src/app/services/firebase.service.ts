@@ -8,6 +8,10 @@ export class FirebaseService {
 
   constructor(public db: AngularFirestore) {}
 
+  getBoard(name: string){
+    return this.db.collection('board',ref => ref.where('name', '==', name)).valueChanges();
+  }
+
   getAvatars(){
       return this.db.collection('/avatar').valueChanges()
   }

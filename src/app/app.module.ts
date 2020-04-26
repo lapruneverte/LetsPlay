@@ -11,6 +11,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
+import { BoardComponent } from './board/board.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -29,7 +30,8 @@ import {MatSliderModule} from '@angular/material/slider';
     AvatarDialogComponent,
     EditUserComponent,
     NewUserComponent,
-    HomeComponent
+    HomeComponent,
+    BoardComponent,
   ],
   entryComponents: [AvatarDialogComponent],
   imports: [
