@@ -1,8 +1,7 @@
 <div class="board-viewport">
     <div id="board" [ngStyle]="{'background-image': 'url(' + boardGame.link + ')', 'width': imgWidth + 'px', 'height': imgHeight + 'px'}">
-        <div *ngFor="let token of tokens" class="token-image" cdkDrag cdkDragBoundary="#board">
+        <div *ngFor="let token of boardGame.tokens; let i = index" class="token-image" cdkDrag cdkDragBoundary="#board" [cdkDragFreeDragPosition]="token.position" (cdkDragEnded)="updateData($event,i)">
             <img [src]=token.link width="100%">
         </div>
     </div>
-
 </div>

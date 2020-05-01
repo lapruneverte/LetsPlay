@@ -1,7 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { BoardModel } from '../core/models/board.model';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TokenModel } from '../core/models/token.model';
+import { DragDropModule, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-board-component',
@@ -26,10 +27,9 @@ export class BoardComponent implements OnInit {
     this.firebaseService.getBoard('Test Game 2')
     .subscribe((result: any) => {
       if (result.length == 1) {
-        this.boardGame.id = result[0].id;
         this.boardGame.name = result[0].name;
         this.boardGame.link = result[0].link;
-        this.tokens = result[0].tokens;
+        this.boardGame.tokens = result[0].tokens;
 
         let self = this;
         let img = new Image();
@@ -44,4 +44,13 @@ export class BoardComponent implements OnInit {
       }
     })
   }
+
+  updateData($event: CdkDragEnd, i: number) {
+    this.boardGame.tokens[i].position.x = this.boardGame.tokens[i].position.x + $event.distance.x;
+    this.boardGame.tokens[i].position.y = this.boardGame.tokens[i].position.y + $event.distance.y;
+    this.firebaseService.updateBoard(this.boardGame)
+    .then(result => {
+      console.log("update ", result);
+    });
+   }
 }

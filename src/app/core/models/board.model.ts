@@ -1,8 +1,10 @@
+import { TokenModel } from './token.model';
+
 export class BoardModel {
-    id: string;
     name: string;
     link: string;
     description?: string;
+    tokens: TokenModel[];
 
     constructor() {};
 
