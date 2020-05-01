@@ -20,12 +20,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BoardComponent,
+    PlayerComponent,
   ],
   entryComponents: [],
   imports: [

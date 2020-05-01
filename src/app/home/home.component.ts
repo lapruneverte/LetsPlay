@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { Router, Params } from '@angular/router';
+import { BoardModel } from '../core/models/board.model';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +10,31 @@ import { Router, Params } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  ageValue: number = 0;
-  searchValue: string = "";
-  items: Array<any>;
-  age_filtered_items: Array<any>;
-  name_filtered_items: Array<any>;
+boardGame: BoardModel = new BoardModel();
+isDataLoaded: boolean = false;
 
-  constructor(
-    public firebaseService: FirebaseService,
-    private router: Router
-  ) { }
+constructor(
+public firebaseService: FirebaseService,
+private router: Router
+) { }
 
-  ngOnInit() {
+ngOnInit() {
+    this.getData();
+}
 
-  }
+getData(){
+  this.firebaseService.getBoard('Test Game 2')
+  .subscribe((result: any) => {
+    if (result.length == 1) {
+      this.boardGame.name = result[0].name;
+      this.boardGame.link = result[0].link;
+      this.boardGame.tokens = result[0].tokens;
+      this.boardGame.players = result[0].players;
+      this.isDataLoaded = true;
+    } else {
+      console.log("Board Component: found 0 or more than 1 board games with that name...");
+    }
+  })
+}
 
 }

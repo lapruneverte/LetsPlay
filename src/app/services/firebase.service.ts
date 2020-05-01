@@ -17,4 +17,8 @@ export class FirebaseService {
   updateBoard(board: any){
     return this.db.collection('board').doc('dT4aJTEaxtPb0TLeiVR6').set(Object.assign({}, board));
   }
+
+  getCardBackside() {
+    return this.db.collection('cards').doc('backside').valueChanges();
+  }
 }
