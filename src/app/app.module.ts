@@ -6,10 +6,6 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { AvatarDialogComponent } from './avatar-dialog/avatar-dialog.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { EditUserResolver } from './edit-user/edit-user.resolver';
-import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 import { BoardComponent } from './board/board.component';
 
@@ -28,13 +24,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
-    AvatarDialogComponent,
-    EditUserComponent,
-    NewUserComponent,
     HomeComponent,
     BoardComponent,
   ],
-  entryComponents: [AvatarDialogComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     FormsModule,
@@ -49,7 +42,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatDialogModule,
     DragDropModule
   ],
-  providers: [FirebaseService, EditUserResolver],
+  providers: [FirebaseService],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
