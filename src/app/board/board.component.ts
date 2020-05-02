@@ -11,7 +11,6 @@ import { DragDropModule, CdkDragEnd } from '@angular/cdk/drag-drop';
   })
 export class BoardComponent implements OnInit {
 
-  //boardGame: BoardModel = new BoardModel();
   imgWidth: number;
   imgHeight: number;
 

@@ -21,4 +21,8 @@ export class FirebaseService {
   getCardBackside() {
     return this.db.collection('cards').doc('backside').valueChanges();
   }
+
+  getBoards(){
+    return this.db.collection('board').valueChanges();
+  }
 }

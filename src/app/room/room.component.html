@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Game Type</th>
+              <th scope="col">Room</th>
+              <th scope="col">Owner Name</th>
+              <th scope="col">Players</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of rooms; let i = index">
+              <th scope="row">{{room.gameType}}</th>
+              <td>{{room.name}}</td>
+              <td>{{room.owner}}</td>
+              <td>{{getPlayerNames(i)}}</td>
+              <td>
+                <button type="button" class="btn btn-primary"><i class="far fa-play"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

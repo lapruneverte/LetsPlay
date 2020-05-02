@@ -21,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { PlayerComponent } from './player/player.component';
+import { RoomComponent } from './room/room.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PlayerComponent } from './player/player.component';
     HomeComponent,
     BoardComponent,
     PlayerComponent,
+    RoomComponent,
   ],
   entryComponents: [],
   imports: [

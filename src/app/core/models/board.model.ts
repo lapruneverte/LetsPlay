@@ -3,10 +3,12 @@ import { PlayerModel } from './player.model';
 
 export class BoardModel {
     name: string;
+    password: string;
+    owner: string;
+    gameType: string;
     link: string;
-    description?: string;
     tokens: TokenModel[];
-    players: PlayerModel;
+    players?: PlayerModel[];
 
     constructor() {};
 }
