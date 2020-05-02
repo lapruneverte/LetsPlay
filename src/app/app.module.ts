@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { GameComponent } from './game/game.component';
 import { BoardComponent } from './board/board.component';
 
 import { AngularFireModule } from '@angular/fire';
@@ -29,7 +29,7 @@ import { JoinRoomComponent } from './join-room/join-room.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    GameComponent,
     BoardComponent,
     PlayerComponent,
     RoomComponent,

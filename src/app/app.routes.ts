@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { BoardComponent } from './board/board.component';
+import { GameComponent } from './game/game.component';
+import { RoomComponent } from './room/room.component';
 
 export const rootRouterConfig: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: RoomComponent }
 ];

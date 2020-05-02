@@ -4,11 +4,11 @@ import { Router, Params } from '@angular/router';
 import { BoardModel } from '../core/models/board.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-game',
+  templateUrl: './game.component.html',
+  styleUrls: ['./game.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class GameComponent implements OnInit {
 
 boardGame: BoardModel = new BoardModel();
 isDataLoaded: boolean = false;
