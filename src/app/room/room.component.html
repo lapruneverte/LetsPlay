@@ -18,7 +18,7 @@
               <td>{{room.owner}}</td>
               <td>{{getPlayerNames(i)}}</td>
               <td>
-                <button type="button" class="btn btn-primary"><i class="far fa-play"></i>Join</button>
+                <button type="button" class="btn btn-primary" (click)="joinRoom(i)"><i class="far fa-play"></i>Join</button>
               </td>
             </tr>
           </tbody>

@@ -24,6 +24,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { PlayerComponent } from './player/player.component';
 import { RoomComponent } from './room/room.component';
 import { NewRoomComponent } from './new-room/new-room.component';
+import { JoinRoomComponent } from './join-room/join-room.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NewRoomComponent } from './new-room/new-room.component';
     PlayerComponent,
     RoomComponent,
     NewRoomComponent,
+    JoinRoomComponent,
   ],
   entryComponents: [],
   imports: [

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FirebaseService } from '../services/firebase.service';
 import { BoardModel } from '../core/models/board.model';
 import { NewRoomComponent } from '../new-room/new-room.component'
+import { JoinRoomComponent } from '../join-room/join-room.component'
 
 @Component({
   selector: 'app-room-component',
@@ -40,6 +41,15 @@ export class RoomComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  joinRoom(i: number) {
+    const dialogRef = this.dialog.open(JoinRoomComponent, {
+      width: '700px',
+      data: {
+        room: this.rooms[i]
+      }
     });
   }
 
