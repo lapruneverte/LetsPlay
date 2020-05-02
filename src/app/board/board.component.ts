@@ -34,9 +34,9 @@ export class BoardComponent implements OnInit {
   updateData($event: CdkDragEnd, i: number) {
     this.boardGame.tokens[i].position.x = this.boardGame.tokens[i].position.x + $event.distance.x;
     this.boardGame.tokens[i].position.y = this.boardGame.tokens[i].position.y + $event.distance.y;
-    this.firebaseService.updateBoard(this.boardGame)
+    this.firebaseService.updateBoardById(this.boardGame)
     .then(result => {
-      console.log("update ", result);
+      //console.log("update ", result);
     });
    }
 }

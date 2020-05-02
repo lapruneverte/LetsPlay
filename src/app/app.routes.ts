@@ -3,5 +3,6 @@ import { GameComponent } from './game/game.component';
 import { RoomComponent } from './room/room.component';
 
 export const rootRouterConfig: Routes = [
-  { path: '', component: RoomComponent }
+  { path: '', component: RoomComponent },
+  { path: 'game/:id', component: GameComponent }
 ];

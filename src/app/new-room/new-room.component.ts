@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { TokenModel } from '../core/models/token.model';
 import { PlayerModel } from '../core/models/player.model';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-new-room',
@@ -27,6 +28,7 @@ export class NewRoomComponent {
       this.firebaseService.uploadImage(this.imageToUpload).then(result => { 
         result.ref.getDownloadURL().then(url => {
           console.log(url);
+          this.newRoom.id = v4();
           this.newRoom.gameType = f.value.selectGameType;
           this.newRoom.link = url;
           this.newRoom.name = f.value.inputRoom;

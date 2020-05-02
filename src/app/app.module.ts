@@ -11,6 +11,7 @@ import { BoardComponent } from './board/board.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { v4 } from 'uuid';
 import { environment } from '../environments/environment';
 import { FirebaseService } from './services/firebase.service';
 

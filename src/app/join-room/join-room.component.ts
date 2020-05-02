@@ -1,5 +1,5 @@
 import { Component, Input, Inject} from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { BoardModel } from '../core/models/board.model';
@@ -14,7 +14,9 @@ export class JoinRoomComponent {
   room: BoardModel;
   error: string;
 
-  constructor(public dialogRef: MatDialogRef<JoinRoomComponent>, @Inject(MAT_DIALOG_DATA) public data) { 
+  constructor(public dialogRef: MatDialogRef<JoinRoomComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data,
+    private router: Router) { 
     this.room = data.room;
   }
 
@@ -26,8 +28,8 @@ export class JoinRoomComponent {
     this.error = null;
     if (f.valid) {
       if (f.value.inputPasswordJoin === this.room.password) {
-        //TODO go to room
         this.dialogRef.close();
+        this.router.navigate(['/game', this.room.id]);
       } else {
         this.error = "Incorrect password";
       }

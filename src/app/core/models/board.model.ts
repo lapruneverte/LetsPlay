@@ -9,6 +9,7 @@ export class BoardModel {
     link: string;
     tokens: TokenModel[];
     players?: PlayerModel[];
+    id: string;
 
     constructor() {};
 }

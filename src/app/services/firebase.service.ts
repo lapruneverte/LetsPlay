@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { BoardComponent } from '../board/board.component';
+import { BoardModel } from '../core/models/board.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,16 @@ export class FirebaseService {
 
   constructor(public db: AngularFirestore, public storage: AngularFireStorage) {}
 
-  getBoard(name: string){
-    return this.db.collection('board',ref => ref.where('name', '==', name)).valueChanges();
+  getBoard(id: string){
+    return this.db.collection('board').doc(id).valueChanges();
   }
 
-  updateBoard(board: any){
-    return this.db.collection('board').doc('dT4aJTEaxtPb0TLeiVR6').set(JSON.parse(JSON.stringify(board)));
+  updateBoardById(board: BoardModel){
+    return this.db.collection('board').doc(board.id).update(JSON.parse(JSON.stringify(board)));
   }
 
   createBoard(board: any) {
-    return this.db.collection('board').add(JSON.parse(JSON.stringify(board)));
+    return this.db.collection('board').doc(board.id).set(JSON.parse(JSON.stringify(board)));
   }
 
   getCardBackside() {
