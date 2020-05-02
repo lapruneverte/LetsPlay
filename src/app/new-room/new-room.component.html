@@ -1,0 +1,25 @@
+<form class="needs-validation" #f="ngForm" (ngSubmit)="createRoom(f)">
+  <div class="form-group">
+    <label for="selectGameType">Game Type</label>
+    <select required ngModel id="selectGameType" name="selectGameType" class="form-control">
+        <option selected>El Dorado</option>
+      </select>
+  </div>
+  <div class="form-group">
+    <label for="inputFile">Board layout</label>
+    <input (change)="handleFileInput($event.target.files)" required ngModel type="file" class="form-control-file" id="inputFile" name="inputFile">
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input required ngModel type="password" class="form-control" id="inputPassword" placeholder="Password" name="inputPassword">
+  </div>
+  <div class="form-group">
+    <label for="inputRoom">Room name</label>
+    <input required ngModel type="text" class="form-control" id="inputRoom" placeholder="Room name" name="inputRoom">
+  </div>
+  <div class="form-group">
+    <label for="inputOwner">Owner</label>
+    <input required ngModel ype="text" class="form-control" id="inputOwner" placeholder="Owner name" name="inputOwner">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

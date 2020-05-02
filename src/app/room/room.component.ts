@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { FirebaseService } from '../services/firebase.service';
 import { BoardModel } from '../core/models/board.model';
+import { NewRoomComponent } from '../new-room/new-room.component'
 
 @Component({
   selector: 'app-room-component',
@@ -11,7 +13,8 @@ export class RoomComponent implements OnInit {
 
   rooms: BoardModel[];
 
-  constructor(public firebaseService: FirebaseService) { }
+  constructor(public firebaseService: FirebaseService, 
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getData();
@@ -28,6 +31,16 @@ export class RoomComponent implements OnInit {
       return this.rooms[i].players.map(player => player.name).join(",");
     }
     return '';
+  }
+
+  newRoom() {
+    const dialogRef = this.dialog.open(NewRoomComponent, {
+      width: '700px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

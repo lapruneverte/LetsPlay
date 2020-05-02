@@ -7,5 +7,11 @@ export class PlayerModel {
     inHand: CardModel[];
     played: CardModel[];
 
-    constructor() {};
+    constructor(name: string) {
+        this.playerId = 1;
+        this.name = name;
+        this.deck = [];
+        this.inHand = [];
+        this.played = [];
+    };
 }
