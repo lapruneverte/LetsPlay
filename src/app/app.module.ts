@@ -7,7 +7,7 @@ import { rootRouterConfig } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
-import { BoardComponent } from './board/board.component';
+import { RoomComponent } from './room/room.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -23,7 +23,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { PlayerComponent } from './player/player.component';
-import { RoomComponent } from './room/room.component';
+import { RoomListComponent } from './room-list/room-list.component';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { JoinRoomComponent } from './join-room/join-room.component';
 import { HallComponent } from './hall/hall.component';
@@ -33,9 +33,9 @@ import { NewPlayerComponent } from './new-player/new-player.component';
   declarations: [
     AppComponent,
     GameComponent,
-    BoardComponent,
-    PlayerComponent,
     RoomComponent,
+    PlayerComponent,
+    RoomListComponent,
     NewRoomComponent,
     JoinRoomComponent,
     HallComponent,

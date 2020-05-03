@@ -1,7 +1,7 @@
 import { TokenModel } from './token.model';
 import { PlayerModel } from './player.model';
 
-export class BoardModel {
+export class RoomModel {
     name: string;
     password: string;
     owner: string;

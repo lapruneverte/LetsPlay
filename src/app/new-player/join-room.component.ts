@@ -2,7 +2,7 @@ import { Component, Input, Inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
-import { BoardModel } from '../core/models/board.model';
+import { RoomModel } from '../core/models/room.model';
 
 @Component({
   selector: 'app-join-room',
@@ -11,7 +11,7 @@ import { BoardModel } from '../core/models/board.model';
 })
 export class JoinRoomComponent {
 
-  room: BoardModel;
+  room: RoomModel;
   error: string;
 
   constructor(public dialogRef: MatDialogRef<JoinRoomComponent>, 

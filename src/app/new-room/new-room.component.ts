@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { BoardModel } from '../core/models/board.model';
+import { RoomModel } from '../core/models/room.model';
 import { NgForm } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { TokenModel } from '../core/models/token.model';
@@ -14,7 +14,7 @@ import { v4 } from 'uuid';
 })
 export class NewRoomComponent {
 
-  newRoom: BoardModel = new BoardModel();
+  newRoom: RoomModel = new RoomModel();
   imageToUpload: File;
 
   constructor(public dialogRef: MatDialogRef<NewRoomComponent>, public firebaseService: FirebaseService) { }
@@ -27,7 +27,6 @@ export class NewRoomComponent {
     if (f.valid) {
       this.firebaseService.uploadImage(this.imageToUpload).then(result => { 
         result.ref.getDownloadURL().then(url => {
-          console.log(url);
           this.newRoom.id = v4();
           this.newRoom.gameType = f.value.selectGameType;
           this.newRoom.link = url;
@@ -40,7 +39,7 @@ export class NewRoomComponent {
           let player: PlayerModel = new PlayerModel(f.value.inputOwner);
           player.playerId = v4();
           this.newRoom.players = new Array(player);
-          this.firebaseService.createBoard(this.newRoom).then( res => {
+          this.firebaseService.createRoom(this.newRoom).then( res => {
             //console.log("res is ",res);
             this.dialogRef.close();
           });

@@ -1,56 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { BoardModel } from '../core/models/board.model';
-import { NewRoomComponent } from '../new-room/new-room.component'
-import { JoinRoomComponent } from '../join-room/join-room.component'
+import { RoomModel } from '../core/models/room.model';
+import { TokenModel } from '../core/models/token.model';
+import { DragDropModule, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'app-room-component',
-  templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss']
-})
+    selector: 'app-room-component',
+    templateUrl: './room.component.html',
+    styleUrls: ['./room.component.scss']
+  })
 export class RoomComponent implements OnInit {
 
-  rooms: BoardModel[];
+  imgWidth: number;
+  imgHeight: number;
 
-  constructor(public firebaseService: FirebaseService, 
-              public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.getData();
+  @Input() room: RoomModel;
+  
+  constructor(
+      public firebaseService: FirebaseService,
+  ) { }
+  
+  ngOnInit() {
+      let self = this;
+      let img = new Image();
+      img.onload = function(event:Event){
+        let loadedImage: any = event.target;
+        self.imgWidth = loadedImage.width;
+        self.imgHeight = loadedImage.height;
+      };
+      img.src = this.room.link;
   }
 
-  getData() {
-    this.firebaseService.getBoards().subscribe( (result: BoardModel[]) => {
-      this.rooms = result;
+  updateData($event: CdkDragEnd, i: number) {
+    this.room.tokens[i].position.x = this.room.tokens[i].position.x + $event.distance.x;
+    this.room.tokens[i].position.y = this.room.tokens[i].position.y + $event.distance.y;
+    this.firebaseService.updateRoom(this.room)
+    .then(result => {
+      //console.log("update ", result);
     });
-  }
-
-  getPlayerNames(i: number) {
-    if (this.rooms[i].players) {
-      return this.rooms[i].players.map(player => player.name).join(",");
-    }
-    return '';
-  }
-
-  newRoom() {
-    const dialogRef = this.dialog.open(NewRoomComponent, {
-      width: '700px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  joinRoom(i: number) {
-    const dialogRef = this.dialog.open(JoinRoomComponent, {
-      width: '700px',
-      data: {
-        room: this.rooms[i]
-      }
-    });
-  }
-
+   }
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { BoardModel } from '../core/models/board.model';
+import { RoomModel } from '../core/models/room.model';
 import { PlayerModel } from '../core/models/player.model';
-import { FirebaseApp } from '@angular/fire';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -15,42 +14,31 @@ export class FirebaseService {
 
   constructor(public db: AngularFirestore, public storage: AngularFireStorage) {}
 
-  getBoard(id: string){
-    return this.db.collection('board').doc(id).valueChanges();
+  getRoom(roomId: string){
+    return this.db.collection('rooms').doc(roomId).valueChanges();
   }
 
-  getBoardPromise(id: string) {
-    return this.db.collection('board').doc(id).get().toPromise();
+  updateRoom(room: RoomModel){
+    return this.db.collection('rooms').doc(room.id).update(JSON.parse(JSON.stringify(room)));
   }
 
-  updateBoardById(board: BoardModel){
-    return this.db.collection('board').doc(board.id).update(JSON.parse(JSON.stringify(board)));
-  }
-
-  updatePlayers(boardId: string, player: PlayerModel) {
-/*     return this.getBoardPromise(boardId).then((result:any) => {
-      //result.players.push(player);
-      result.data().players.push(player);
-      return this.db.collection('board').doc(boardId).update({
-        players: JSON.parse(JSON.stringify(result.data().players))
-      });
-    }); */
-    let boardRef = this.db.collection('board').doc(boardId);
-    return boardRef.update({
+  updatePlayers(roomId: string, player: PlayerModel) {
+    let roomRef = this.db.collection('rooms').doc(roomId);
+    return roomRef.update({
       players: firebase.firestore.FieldValue.arrayUnion(JSON.parse(JSON.stringify(player)))
     });
   }
 
-  createBoard(board: any) {
-    return this.db.collection('board').doc(board.id).set(JSON.parse(JSON.stringify(board)));
+  createRoom(room: RoomModel) {
+    return this.db.collection('rooms').doc(room.id).set(JSON.parse(JSON.stringify(room)));
   }
 
   getCardBackside() {
     return this.db.collection('cards').doc('backside').valueChanges();
   }
 
-  getBoards(){
-    return this.db.collection('board').valueChanges();
+  getRooms(){
+    return this.db.collection('rooms').valueChanges();
   }
 
   uploadImage(fileBlob: File){

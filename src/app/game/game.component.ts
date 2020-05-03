@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { BoardModel } from '../core/models/board.model';
+import { ActivatedRoute } from '@angular/router';
+import { RoomModel } from '../core/models/room.model';
 
 @Component({
   selector: 'app-game',
@@ -11,13 +11,12 @@ import { BoardModel } from '../core/models/board.model';
 export class GameComponent implements OnInit {
 
 gameId: string;
-boardGame: BoardModel;
+room: RoomModel;
 isDataLoaded: boolean = false;
 playerId: string;
 
 constructor(
 public firebaseService: FirebaseService,
-private router: Router,
 private route: ActivatedRoute
 ) { }
 
@@ -29,9 +28,9 @@ ngOnInit() {
 }
 
 getData(id: string){
-  this.firebaseService.getBoard(id)
-    .subscribe((result: BoardModel) => {
-      this.boardGame = result;
+  this.firebaseService.getRoom(id)
+    .subscribe((result: RoomModel) => {
+      this.room = result;
       this.isDataLoaded = true;
       this.playerId = sessionStorage.getItem('playerId');
   })

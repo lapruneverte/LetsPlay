@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { BoardModel } from '../core/models/board.model';
+import { RoomModel } from '../core/models/room.model';
 import { FirebaseService } from '../services/firebase.service';
 import { NewPlayerComponent } from '../new-player/new-player.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class HallComponent implements OnInit {
 
   gameId: string;
-  room: BoardModel;
+  room: RoomModel;
   isDataLoaded: boolean = false;
 
   constructor(private route: ActivatedRoute,
@@ -29,8 +29,8 @@ export class HallComponent implements OnInit {
   }
 
   getData(id: string) {
-    this.firebaseService.getBoard(id)
-    .subscribe((result: BoardModel) => {
+    this.firebaseService.getRoom(id)
+    .subscribe((result: RoomModel) => {
       this.room = result;
       this.isDataLoaded = true;
     })

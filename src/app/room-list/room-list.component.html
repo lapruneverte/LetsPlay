@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Game Type</th>
+              <th scope="col">Room</th>
+              <th scope="col">Owner Name</th>
+              <th scope="col">Players</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of rooms; let i = index">
+              <th scope="row">{{room.gameType}}</th>
+              <td>{{room.name}}</td>
+              <td>{{room.owner}}</td>
+              <td>{{getPlayerNames(i)}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="joinRoom(i)"><i class="far fa-play"></i>Join</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <button mat-raised-button type="button" class="btn btn-primary" (click)="newRoom()"><i class="far fa-play"></i>New Room</button>
+        </div>
+    </div>
+  </div>
