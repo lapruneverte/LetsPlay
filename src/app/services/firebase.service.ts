@@ -26,7 +26,14 @@ export class FirebaseService {
     });
   }
 
-  updatePlayers(roomId: string, player: PlayerModel) {
+  updatePlayers(roomId: string, players: PlayerModel[]) {
+    let roomRef = this.db.collection('rooms').doc(roomId);
+    return roomRef.update({
+      players: JSON.parse(JSON.stringify(players))
+    });
+  }
+
+  addPlayer(roomId: string, player: PlayerModel) {
     let roomRef = this.db.collection('rooms').doc(roomId);
     return roomRef.update({
       players: firebase.firestore.FieldValue.arrayUnion(JSON.parse(JSON.stringify(player)))

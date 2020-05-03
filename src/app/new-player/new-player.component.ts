@@ -35,7 +35,7 @@ export class NewPlayerComponent {
         let player = new PlayerModel(f.value.inputPlayerName);
         player.playerId = v4();
         player.deck = this.utils.shuffleArray(result.data().cards.player);
-        this.firebaseService.updatePlayers(this.roomId, player).then( result => {
+        this.firebaseService.addPlayer(this.roomId, player).then( result => {
           this.dialogRef.close();
         });
       });

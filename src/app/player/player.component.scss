@@ -1,4 +1,12 @@
-.card-down {
+.card-small {
     width: 75px;
     height: 100px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.not-clickable {
+    cursor: default;
 }

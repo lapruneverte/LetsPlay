@@ -5,7 +5,7 @@
             <app-room-component [room]=room></app-room-component>
         </div>
         <div class="col-4">
-            <app-player></app-player>
+            <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event)></app-player>
         </div>
     </div>
     <div class="row">
