@@ -41,7 +41,7 @@ export class NewRoomComponent {
           player.playerId = v4();
           this.newRoom.players = new Array(player);
           this.firebaseService.createBoard(this.newRoom).then( res => {
-            console.log("res is ",res);
+            //console.log("res is ",res);
             this.dialogRef.close();
           });
         })

@@ -13,6 +13,7 @@ export class GameComponent implements OnInit {
 gameId: string;
 boardGame: BoardModel;
 isDataLoaded: boolean = false;
+playerId: string;
 
 constructor(
 public firebaseService: FirebaseService,
@@ -29,9 +30,10 @@ ngOnInit() {
 
 getData(id: string){
   this.firebaseService.getBoard(id)
-  .subscribe((result: BoardModel) => {
-    this.boardGame = result;
-    this.isDataLoaded = true;
+    .subscribe((result: BoardModel) => {
+      this.boardGame = result;
+      this.isDataLoaded = true;
+      this.playerId = sessionStorage.getItem('playerId');
   })
 }
 

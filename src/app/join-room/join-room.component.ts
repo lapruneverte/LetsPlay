@@ -29,7 +29,7 @@ export class JoinRoomComponent {
     if (f.valid) {
       if (f.value.inputPasswordJoin === this.room.password) {
         this.dialogRef.close();
-        this.router.navigate(['/game', this.room.id]);
+        this.router.navigate(['/hall', this.room.id]);
       } else {
         this.error = "Incorrect password";
       }

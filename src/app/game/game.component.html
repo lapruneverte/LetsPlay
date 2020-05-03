@@ -1,11 +1,11 @@
-<div>
-    Let's play!
+<div *ngIf="isDataLoaded">
+    Let's play user Id {{playerId}}!
     <div class="row">
         <div class="col-8">
-            <app-board-component *ngIf="isDataLoaded" [boardGame]=boardGame></app-board-component>
+            <app-board-component [boardGame]=boardGame></app-board-component>
         </div>
         <div class="col-4">
-            <app-player *ngIf="isDataLoaded"></app-player>
+            <app-player></app-player>
         </div>
     </div>
     <div class="row">

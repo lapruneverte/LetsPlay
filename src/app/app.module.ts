@@ -26,6 +26,8 @@ import { PlayerComponent } from './player/player.component';
 import { RoomComponent } from './room/room.component';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { JoinRoomComponent } from './join-room/join-room.component';
+import { HallComponent } from './hall/hall.component';
+import { NewPlayerComponent } from './new-player/new-player.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { JoinRoomComponent } from './join-room/join-room.component';
     RoomComponent,
     NewRoomComponent,
     JoinRoomComponent,
+    HallComponent,
+    NewPlayerComponent,
   ],
   entryComponents: [],
   imports: [
