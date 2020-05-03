@@ -45,7 +45,8 @@ export class HallComponent implements OnInit {
     this.dialog.open(NewPlayerComponent, {
       width: '700px',
       data: {
-        roomId: this.room.id
+        roomId: this.room.id,
+        gameType: this.room.gameType
       }
     });
   }

@@ -4,6 +4,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { PlayerModel } from '../core/models/player.model';
 import { v4 } from 'uuid';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-new-player',
@@ -13,10 +14,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class NewPlayerComponent {
 
   roomId: string;
+  gameType: string;
 
-  constructor(public firebaseService: FirebaseService, public dialogRef: MatDialogRef<NewPlayerComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data) { 
+  constructor(public firebaseService: FirebaseService, 
+    public dialogRef: MatDialogRef<NewPlayerComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data,
+    private utils: UtilsService
+    ) { 
       this.roomId = data.roomId;
+      this.gameType = data.gameType;
     }
 
   onNoClick(): void {
@@ -25,10 +31,13 @@ export class NewPlayerComponent {
 
   createPlayer(f: NgForm) {
     if (f.valid) {
-      let player = new PlayerModel(f.value.inputPlayerName);
-      player.playerId = v4();
-      this.firebaseService.updatePlayers(this.roomId, player).then( result => {
-        this.dialogRef.close();
+        this.firebaseService.getAsset(this.gameType).then(result => {
+        let player = new PlayerModel(f.value.inputPlayerName);
+        player.playerId = v4();
+        player.deck = this.utils.shuffleArray(result.data().cards.player);
+        this.firebaseService.updatePlayers(this.roomId, player).then( result => {
+          this.dialogRef.close();
+        });
       });
     }   
   }

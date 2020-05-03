@@ -45,7 +45,7 @@ export class FirebaseService {
     return this.db.collection('rooms').valueChanges();
   }
 
-  getTokens(assetId: string) {
+  getAsset(assetId: string) {
     return this.db.collection('assets').doc(assetId).get().toPromise();
   }
 

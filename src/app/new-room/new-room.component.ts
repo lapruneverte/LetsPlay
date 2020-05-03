@@ -6,6 +6,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { TokenModel } from '../core/models/token.model';
 import { PlayerModel } from '../core/models/player.model';
 import { v4 } from 'uuid';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-new-room',
@@ -17,7 +18,7 @@ export class NewRoomComponent {
   newRoom: RoomModel = new RoomModel();
   imageToUpload: File;
 
-  constructor(public dialogRef: MatDialogRef<NewRoomComponent>, public firebaseService: FirebaseService) { }
+  constructor(public dialogRef: MatDialogRef<NewRoomComponent>, public firebaseService: FirebaseService, private utils: UtilsService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -34,17 +35,12 @@ export class NewRoomComponent {
           this.newRoom.password = f.value.inputPassword;
           this.newRoom.owner = f.value.inputOwner;
 
-          this.firebaseService.getTokens(f.value.selectGameType).then(result => {
-            this.newRoom.tokens = result.data().tokens;
-            let player: PlayerModel = new PlayerModel(f.value.inputOwner);
-            player.playerId = v4();
-            this.newRoom.players = new Array(player);
-  
+          this.firebaseService.getAsset(f.value.selectGameType).then(result => {
+            this.newRoom.tokens = result.data().tokens;  
             this.firebaseService.createRoom(this.newRoom).then( res => {
-              //console.log("res is ",res);
               this.dialogRef.close();
             });
-          })
+          });
         })
       });
     }   
