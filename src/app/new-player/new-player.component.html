@@ -1,0 +1,8 @@
+<form class="needs-validation" #f="ngForm" (ngSubmit)="createPlayer(f)">
+    <div class="form-group">
+      <label for="inputPlayerName">Player name</label>
+      <input required ngModel type="text" class="form-control" id="inputPlayerName" placeholder="Player name" name="inputPlayerName">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  

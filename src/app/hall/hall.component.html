@@ -1,0 +1,27 @@
+<div class="container" *ngIf="isDataLoaded">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Player Name</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let player of room.players; let i = index">
+              <th scope="row">{{player.name}}</th>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="pickPlayer(i)"><i class="far fa-play"></i>Pick</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <button mat-raised-button type="button" class="btn btn-primary" (click)="newPlayer()"><i class="far fa-play"></i>New Player</button>
+        </div>
+    </div>
+  </div>
