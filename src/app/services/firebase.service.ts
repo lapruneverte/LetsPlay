@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { RoomModel } from '../core/models/room.model';
 import { PlayerModel } from '../core/models/player.model';
 import * as firebase from 'firebase';
+import { TokenModel } from '../core/models/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,15 @@ export class FirebaseService {
 
   constructor(public db: AngularFirestore, public storage: AngularFireStorage) {}
 
-  getRoom(roomId: string){
+  getRoom(roomId: string) {
     return this.db.collection('rooms').doc(roomId).valueChanges();
   }
 
-  updateRoom(room: RoomModel){
-    return this.db.collection('rooms').doc(room.id).update(JSON.parse(JSON.stringify(room)));
+  updateTokens(roomId: string, tokens: TokenModel[]) {
+    let roomRef = this.db.collection('rooms').doc(roomId);
+    return roomRef.update({
+      tokens: JSON.parse(JSON.stringify(tokens))
+    });
   }
 
   updatePlayers(roomId: string, player: PlayerModel) {
@@ -37,8 +41,12 @@ export class FirebaseService {
     return this.db.collection('cards').doc('backside').valueChanges();
   }
 
-  getRooms(){
+  getRooms() {
     return this.db.collection('rooms').valueChanges();
+  }
+
+  getTokens(assetId: string) {
+    return this.db.collection('assets').doc(assetId).get().toPromise();
   }
 
   uploadImage(fileBlob: File){

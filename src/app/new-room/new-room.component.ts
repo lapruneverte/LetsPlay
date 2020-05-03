@@ -33,16 +33,18 @@ export class NewRoomComponent {
           this.newRoom.name = f.value.inputRoom;
           this.newRoom.password = f.value.inputPassword;
           this.newRoom.owner = f.value.inputOwner;
-          //TODO all of this
-          let token: TokenModel = new TokenModel();
-          this.newRoom.tokens = new Array(token);
-          let player: PlayerModel = new PlayerModel(f.value.inputOwner);
-          player.playerId = v4();
-          this.newRoom.players = new Array(player);
-          this.firebaseService.createRoom(this.newRoom).then( res => {
-            //console.log("res is ",res);
-            this.dialogRef.close();
-          });
+
+          this.firebaseService.getTokens(f.value.selectGameType).then(result => {
+            this.newRoom.tokens = result.data().tokens;
+            let player: PlayerModel = new PlayerModel(f.value.inputOwner);
+            player.playerId = v4();
+            this.newRoom.players = new Array(player);
+  
+            this.firebaseService.createRoom(this.newRoom).then( res => {
+              //console.log("res is ",res);
+              this.dialogRef.close();
+            });
+          })
         })
       });
     }   

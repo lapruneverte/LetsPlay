@@ -34,9 +34,10 @@ export class RoomComponent implements OnInit {
   updateData($event: CdkDragEnd, i: number) {
     this.room.tokens[i].position.x = this.room.tokens[i].position.x + $event.distance.x;
     this.room.tokens[i].position.y = this.room.tokens[i].position.y + $event.distance.y;
-    this.firebaseService.updateRoom(this.room)
-    .then(result => {
-      //console.log("update ", result);
-    });
-   }
+    this.firebaseService.updateTokens(this.room.id, this.room.tokens);
+  }
+
+  getImageUri(){
+    return this.room.link.replace(/\(/g, '%28').replace(/\)/g, '%29');
+  }
 }
