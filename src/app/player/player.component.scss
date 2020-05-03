@@ -1,6 +1,14 @@
-.card-small {
+.card-image-small {
     width: 75px;
     height: 100px;
+}
+
+.card-item {
+    cursor: pointer;
+}
+
+.cards-container {
+    display: flex;
 }
 
 .clickable {
@@ -9,4 +17,8 @@
 
 .not-clickable {
     cursor: default;
+}
+
+.dropdown-item {
+    cursor: pointer;
 }

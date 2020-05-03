@@ -1,14 +1,32 @@
 <div class="row">
     <div class="col-6">deck {{player.deck.length}}
-        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-small" [ngClass]="(player.deck.length > 0) ? 'clickable':'not-clickable'" (click)="popCard()">
+        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-image-small" [ngClass]="(player.deck.length > 0) ? 'clickable':'not-clickable'" (click)="shiftCard()">
     </div>
-    <div class="col-6">played
-        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-small">
+    <div class="col-6">played {{player.played.length}}
+        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-image-small">
     </div>
 </div>
+<div>inhand {{player.inHand.length}}</div>
 <div class="row">
-    <div>inhand {{player.inHand.length}}
-        <img *ngFor="let card of player.inHand; let i = index" [src]=card.link class="card-small" (click)="popCard()">
+    <div class="cards-container">
+        <div *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" class="card-item">
+            <img [src]=card.link class="card-image-small">
+        </div>
     </div>
 </div>
 
+<div>preview {{player.preview.length}}</div>
+<div class="row">
+    <div class="cards-container">
+        <div *ngFor="let card of player.preview; let i = index" (click)="moveToHand(i)" class="card-item">
+            <img [src]=card.link class="card-image-small">
+        </div>
+    </div>
+</div>
+<button class="button" (click)="play()">Play</button>
+<button class="button" (click)="shuffle()">Shuffle</button>
+
+<ul (clickOutside)="closeMenu($event)" id="context1" class="dropdown-menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
+    <li><a role="button" class="dropdown-item" (click)="moveToPreview()">Play</a></li>
+    <li><a role="button" class="dropdown-item" (click)="moveToDeck()">To Deck</a></li>
+</ul>

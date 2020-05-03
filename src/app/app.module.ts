@@ -28,6 +28,7 @@ import { NewRoomComponent } from './new-room/new-room.component';
 import { JoinRoomComponent } from './join-room/join-room.component';
 import { HallComponent } from './hall/hall.component';
 import { NewPlayerComponent } from './new-player/new-player.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { NewPlayerComponent } from './new-player/new-player.component';
     MatInputModule,
     MatSliderModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    ClickOutsideModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent],
