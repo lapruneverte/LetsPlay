@@ -1,16 +1,17 @@
 <div *ngIf="isDataLoaded">
     Let's play user Id {{playerId}}!
     <div class="row">
-        <div class="col-8">
+        <div class="col-9">
             <app-room-component [room]=room></app-room-component>
         </div>
-        <div class="col-4">
-            <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event)></app-player>
+        <div class="col-3">
+            <div class="player-container">
+                <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event)></app-player>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">dos</div>
     </div>
-    
 </div>
   

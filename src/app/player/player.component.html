@@ -1,32 +1,46 @@
-<div class="row">
-    <div class="col-6">deck {{player.deck.length}}
-        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-image-small" [ngClass]="(player.deck.length > 0) ? 'clickable':'not-clickable'" (click)="shiftCard()">
-    </div>
-    <div class="col-6">played {{player.played.length}}
-        <img *ngIf="cardBackside != undefined" [src]=cardBackside.link class="card-image-small">
-    </div>
-</div>
-<div>inhand {{player.inHand.length}}</div>
-<div class="row">
-    <div class="cards-container">
-        <div *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" class="card-item">
-            <img [src]=card.link class="card-image-small">
+<div *ngIf="cardBackside">
+    <div class="row">
+        <div class="col-6">
+            <div class="center">Draw pile {{player.deck.length}}</div>
+            <div class="deck-container center">
+                <img *ngIf="player.deck.length > 0" [src]=cardBackside.link class="card-image-small" [ngClass]="(player.deck.length > 0) ? 'clickable':'not-clickable'" (click)="shiftCard()">
+            </div>
         </div>
+        <div class="col-6">
+            <div class="center">Discard pile {{player.played.length}}</div>
+            <div class="deck-container center">
+                <img *ngIf="player.played.length > 0" [src]=player.played[player.played.length-1].link class="card-image-small">
+            </div>
+            <div class="center">
+                <button class="btn btn-primary" (click)="shuffle()">Shuffle</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="center">Hand {{player.inHand.length}}</div>
+        <div class="cards-container">
+            <div *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" class="card-item">
+                <img [src]=card.link class="card-image-small">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="center">Preview {{player.preview.length}}</div>
+        <div class="cards-container">
+            <div *ngFor="let card of player.preview; let i = index" (click)="moveToHand(i)" class="card-item">
+                <img [src]=card.link class="card-image-small">
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block" (click)="play()">Confirm</button>
     </div>
 </div>
 
-<div>preview {{player.preview.length}}</div>
-<div class="row">
-    <div class="cards-container">
-        <div *ngFor="let card of player.preview; let i = index" (click)="moveToHand(i)" class="card-item">
-            <img [src]=card.link class="card-image-small">
-        </div>
-    </div>
-</div>
-<button class="button" (click)="play()">Play</button>
-<button class="button" (click)="shuffle()">Shuffle</button>
-
-<ul (clickOutside)="closeMenu($event)" id="context1" class="dropdown-menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
+<ul (clickOutside)="onClickOutsideMenu($event)" id="context1" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
     <li><a role="button" class="dropdown-item" (click)="moveToPreview()">Play</a></li>
     <li><a role="button" class="dropdown-item" (click)="moveToDeck()">To Deck</a></li>
+    <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>
 </ul>
+
+<div (click)="closeZoom()" *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px'}">
+    <img [src]=zoomImageSrc>
+</div>

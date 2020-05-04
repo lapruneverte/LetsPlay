@@ -19,6 +19,9 @@ export class PlayerComponent implements OnInit {
   menuX: number;
   menuY: number;
   selectedIndex: number;
+  lastTarget: any;
+  zoomImageSrc: string;
+  zoom: boolean;
 
   constructor(public firebaseService: FirebaseService, public utils: UtilsService) { }
 
@@ -41,28 +44,39 @@ export class PlayerComponent implements OnInit {
   }
 
   showMenu(event: MouseEvent, i:number) {
-    this.menuX = event.x;
+    console.log(event);
+    if (event.view.innerWidth - event.x < 170) {
+      this.menuX = event.x - 160;
+    } else {
+      this.menuX = event.x;
+    }
+
     this.menuY = event.y;
     this.isMenuVisible = true;
     this.selectedIndex = i;
+    this.lastTarget = event.target;
   }
 
-  closeMenu(event?: MouseEvent) {
-    if (this.isMenuVisible == true && event && event.x != this.menuX && event.y != this.menuY) {
-      this.isMenuVisible = false;
+  onClickOutsideMenu(event?: MouseEvent) {
+    if (event.target != this.lastTarget) {
+      this.closeMenu();
     }
+  }
+
+  closeMenu() {
+    this.isMenuVisible = false;
   }
 
   moveToDeck() {
     this.player.deck.push(this.player.inHand.splice(this.selectedIndex,1)[0]);
     this.cardsChanged();
-    this.isMenuVisible = false;
+    this.closeMenu();
   }
 
   moveToPreview() {
     this.player.preview.push(this.player.inHand.splice(this.selectedIndex,1)[0]);
     this.cardsChanged();
-    this.isMenuVisible = false;
+    this.closeMenu();
   }
 
   moveToHand(index: number) {
@@ -82,5 +96,15 @@ export class PlayerComponent implements OnInit {
       this.player.played = [];
       this.cardsChanged();
     }
+  }
+
+  zoomImage() {
+    this.zoom = true;
+    this.zoomImageSrc = this.player.inHand[this.selectedIndex].link;
+    this.closeMenu();
+  }
+
+  closeZoom() {
+    this.zoom = false;
   }
 }

@@ -9,6 +9,23 @@
 
 .cards-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    min-height: 110px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+}
+
+.deck-container {
+    width: 75px;
+    height: 100px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.2);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .clickable {
@@ -21,4 +38,29 @@
 
 .dropdown-item {
     cursor: pointer;
+}
+
+.zoom-image-container {
+    width: 160px;
+    position: fixed;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    img {
+        width: 100%;
+    }
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.menu {
+    width: 100px;
 }
