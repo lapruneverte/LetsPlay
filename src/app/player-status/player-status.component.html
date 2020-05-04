@@ -12,6 +12,6 @@
     </div>
 </div>
 
-<div *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': zoomX + 'px', 'top': zoomY + 'px'}">
+<div (click)="closeZoom()" *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': zoomX + 'px', 'top': zoomY + 'px'}">
     <img [src]=zoomImageSrc>
 </div>

@@ -31,4 +31,8 @@ export class PlayerStatusComponent implements OnInit {
     this.zoomY = event.y - 200;
   }
 
+  closeZoom() {
+    this.zoom = false;
+  }
+
 }
