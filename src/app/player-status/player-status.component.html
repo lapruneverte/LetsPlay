@@ -1,0 +1,13 @@
+<div class="players">
+    <div *ngFor="let player of room.players; let i = index">
+        <p>{{player.name}}</p>
+        <p>InHand {{player.inHand.length}}</p>
+        <p>Deck {{player.deck.length}}</p>
+        <p>Played {{player.played.length}}</p>
+        <div class="cards-container">
+            <div *ngFor="let card of player.preview; let i = index">
+                <img [src]=card.link class="card-image-small">
+            </div>
+        </div>
+    </div>
+</div>>

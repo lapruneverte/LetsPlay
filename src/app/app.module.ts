@@ -29,6 +29,7 @@ import { JoinRoomComponent } from './join-room/join-room.component';
 import { HallComponent } from './hall/hall.component';
 import { NewPlayerComponent } from './new-player/new-player.component';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { PlayerStatusComponent } from './player-status/player-status.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     JoinRoomComponent,
     HallComponent,
     NewPlayerComponent,
+    PlayerStatusComponent,
   ],
   entryComponents: [],
   imports: [
