@@ -18,7 +18,7 @@ export class PlayerComponent implements OnInit {
   isMenuVisible: boolean = false;
   menuX: number;
   menuY: number;
-  selectedIndex: number;
+  selectedCardIndex: number;
   lastTarget: any;
   zoomImageSrc: string;
   zoom: boolean;
@@ -44,7 +44,7 @@ export class PlayerComponent implements OnInit {
   }
 
   showMenu(event: MouseEvent, i:number) {
-    console.log(event);
+    this.zoom = false;
     if (event.view.innerWidth - event.x < 170) {
       this.menuX = event.x - 160;
     } else {
@@ -53,7 +53,7 @@ export class PlayerComponent implements OnInit {
 
     this.menuY = event.y;
     this.isMenuVisible = true;
-    this.selectedIndex = i;
+    this.selectedCardIndex = i;
     this.lastTarget = event.target;
   }
 
@@ -67,19 +67,19 @@ export class PlayerComponent implements OnInit {
     this.isMenuVisible = false;
   }
 
-  moveToDeck() {
-    this.player.deck.push(this.player.inHand.splice(this.selectedIndex,1)[0]);
+  moveFromInHandToDeck() {
+    this.player.deck.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
     this.cardsChanged();
     this.closeMenu();
   }
 
-  moveToPreview() {
-    this.player.preview.push(this.player.inHand.splice(this.selectedIndex,1)[0]);
+  moveFromHandToPreview() {
+    this.player.preview.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
     this.cardsChanged();
     this.closeMenu();
   }
 
-  moveToHand(index: number) {
+  moveFromPreviewToHand(index: number) {
     this.player.inHand.push(this.player.preview.splice(index,1)[0]);
     this.cardsChanged();
   }
@@ -100,7 +100,7 @@ export class PlayerComponent implements OnInit {
 
   zoomImage() {
     this.zoom = true;
-    this.zoomImageSrc = this.player.inHand[this.selectedIndex].link;
+    this.zoomImageSrc = this.player.inHand[this.selectedCardIndex].link;
     this.closeMenu();
   }
 

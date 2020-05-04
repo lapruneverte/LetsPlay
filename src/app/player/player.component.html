@@ -27,7 +27,7 @@
     <div class="row">
         <div class="center">Preview {{player.preview.length}}</div>
         <div class="cards-container">
-            <div *ngFor="let card of player.preview; let i = index" (click)="moveToHand(i)" class="card-item">
+            <div *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" class="card-item">
                 <img [src]=card.link class="card-image-small">
             </div>
         </div>
@@ -36,8 +36,8 @@
 </div>
 
 <ul (clickOutside)="onClickOutsideMenu($event)" id="context1" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
-    <li><a role="button" class="dropdown-item" (click)="moveToPreview()">Play</a></li>
-    <li><a role="button" class="dropdown-item" (click)="moveToDeck()">To Deck</a></li>
+    <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreview()">Play</a></li>
+    <li><a role="button" class="dropdown-item" (click)="moveFromInHandToDeck()">To Deck</a></li>
     <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>
 </ul>
 
