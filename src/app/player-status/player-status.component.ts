@@ -8,10 +8,27 @@ import { RoomModel } from '../core/models/room.model';
 })
 export class PlayerStatusComponent implements OnInit {
   @Input() room: RoomModel;
+
+  zoom: boolean;
+  zoomImageSrc: string;
+  zoomX: number;
+  zoomY: number;
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  zoomImage(event: MouseEvent, playerIndex: number, cardIndex: number) {
+    this.zoom = true;
+    this.zoomImageSrc = this.room.players[playerIndex].preview[cardIndex].link;
+    if (event.view.innerWidth - event.x < 170) {
+      this.zoomX = event.x - 160;
+    } else {
+      this.zoomX = event.x;
+    }
+
+    this.zoomY = event.y - 200;
   }
 
 }

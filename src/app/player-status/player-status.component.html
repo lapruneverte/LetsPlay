@@ -1,13 +1,17 @@
 <div class="players">
-    <div *ngFor="let player of room.players; let i = index">
+    <div *ngFor="let player of room.players; let playerIndex = index">
         <p>{{player.name}}</p>
         <p>InHand {{player.inHand.length}}</p>
         <p>Deck {{player.deck.length}}</p>
         <p>Played {{player.played.length}}</p>
         <div class="cards-container">
-            <div *ngFor="let card of player.preview; let i = index">
-                <img [src]=card.link class="card-image-small">
+            <div *ngFor="let card of player.preview; let cardIndex = index">
+                <img [src]=card.link class="card-image-small clickable" (click)="zoomImage($event, playerIndex, cardIndex)">
             </div>
         </div>
     </div>
+</div>
+
+<div *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': zoomX + 'px', 'top': zoomY + 'px'}">
+    <img [src]=zoomImageSrc>
 </div>

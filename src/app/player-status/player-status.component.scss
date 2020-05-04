@@ -19,3 +19,18 @@
     width: 75px;
     height: 100px;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+.zoom-image-container {
+    width: 160px;
+    position: fixed;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    img {
+        width: 100%;
+    }
+}
