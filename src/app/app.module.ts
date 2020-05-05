@@ -33,6 +33,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { PlayerStatusComponent } from './player-status/player-status.component';
 import { StoreComponent } from './store/store.component';
 import { DeckComponent } from './deck/deck.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DeckComponent } from './deck/deck.component';
     PlayerStatusComponent,
     StoreComponent,
     DeckComponent,
+    CardComponent,
   ],
   entryComponents: [],
   imports: [

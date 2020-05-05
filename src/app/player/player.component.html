@@ -19,17 +19,13 @@
     <div class="row">
         <div class="center">Hand {{player.inHand.length}}</div>
         <div class="cards-container">
-            <div *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" class="card-item">
-                <img [src]=card.link class="card-image-small">
-            </div>
+            <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [cardImage]="card.link"></app-card>
         </div>
     </div>
     <div class="row">
         <div class="center">Preview {{player.preview.length}}</div>
         <div class="cards-container">
-            <div *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" class="card-item">
-                <img [src]=card.link class="card-image-small">
-            </div>
+            <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [cardImage]="card.link"></app-card>
         </div>
         <button class="btn btn-primary btn-block" (click)="play()">Confirm</button>
     </div>
