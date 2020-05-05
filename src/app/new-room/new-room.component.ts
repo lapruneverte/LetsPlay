@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { v4 } from 'uuid';
 import { UtilsService } from '../services/utils.service';
-import { StoreModel } from '../core/models/store.model';
+import { StoreCardModel } from '../core/models/store-card.model';
 
 @Component({
   selector: 'app-new-room',

@@ -21,4 +21,8 @@ export class StoreComponent implements OnInit {
     this.room.players.find( p => p.playerId === playerId).played.unshift(card);
   }
 
+  updateData($event,i) {
+    console.log($event);
+  }
+
 }

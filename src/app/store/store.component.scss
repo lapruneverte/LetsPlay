@@ -1,17 +1,30 @@
-.store-container {
-    width: 100%;
+.store-viewport {
     height: 500px;
+    width: 100%;
     border: 1px solid lightgrey;
     border-top: 0;
-    padding-top: 50px;
+    overflow: scroll;
+}
+
+.store-container {
+    width: 1200px;
+    height: 500px;
 }
 
 .decks-collection {
     display: flex;
     justify-content: space-evenly;
+    z-index: 1;
 }
 
-.card-image-small {
-    width: 75px;
-    height: 100px;
+.store-item-container {
+    height: 110px;
+    width: 85px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+.other-decks {
+    height: 300px;
+    width: 100%;
 }

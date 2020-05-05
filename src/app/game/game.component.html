@@ -1,13 +1,13 @@
 <div *ngIf="isDataLoaded">
-    Let's play user Id {{playerId}}!
+    Let's play user {{getPlayerData().name}}!
     <div class="row">
         <div class="col-9 tabs-container">
             <mat-tab-group animationDuration="0ms">
-                <mat-tab label="Board">
-                    <app-board-component [room]=room></app-board-component>
-                </mat-tab>
                 <mat-tab label="Store">
                     <app-store [room]=room></app-store>
+                </mat-tab>
+                <mat-tab label="Board">
+                    <app-board-component [room]=room></app-board-component>
                 </mat-tab>
             </mat-tab-group>
         </div>
