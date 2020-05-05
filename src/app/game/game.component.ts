@@ -3,6 +3,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
 import { RoomModel } from '../core/models/room.model';
 import { PlayerModel } from '../core/models/player.model';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-game',

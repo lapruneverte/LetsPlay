@@ -37,6 +37,8 @@ export class NewRoomComponent {
 
           this.firebaseService.getAsset(f.value.selectGameType).then(result => {
             this.newRoom.tokens = result.data().tokens;  
+            this.newRoom.store = result.data().cards.store;
+            this.newRoom.other = result.data().cards.other;
             this.firebaseService.createRoom(this.newRoom).then( res => {
               this.dialogRef.close();
             });

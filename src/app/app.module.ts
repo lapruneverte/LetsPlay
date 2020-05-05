@@ -20,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatTabsModule} from '@angular/material/tabs';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { PlayerComponent } from './player/player.component';
@@ -30,6 +31,7 @@ import { HallComponent } from './hall/hall.component';
 import { NewPlayerComponent } from './new-player/new-player.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { PlayerStatusComponent } from './player-status/player-status.component';
+import { StoreComponent } from './store/store.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { PlayerStatusComponent } from './player-status/player-status.component';
     HallComponent,
     NewPlayerComponent,
     PlayerStatusComponent,
+    StoreComponent,
   ],
   entryComponents: [],
   imports: [
@@ -57,6 +60,7 @@ import { PlayerStatusComponent } from './player-status/player-status.component';
     MatInputModule,
     MatSliderModule,
     MatDialogModule,
+    MatTabsModule,
     DragDropModule,
     ClickOutsideModule
   ],

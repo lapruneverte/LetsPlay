@@ -1,8 +1,15 @@
 <div *ngIf="isDataLoaded">
     Let's play user Id {{playerId}}!
     <div class="row">
-        <div class="col-9">
-            <app-room-component [room]=room></app-room-component>
+        <div class="col-9 tabs-container">
+            <mat-tab-group animationDuration="0ms">
+                <mat-tab label="Board">
+                    <app-room-component [room]=room></app-room-component>
+                </mat-tab>
+                <mat-tab label="Store">
+                    <app-store [room]=room></app-store>
+                </mat-tab>
+            </mat-tab-group>
         </div>
         <div class="col-3">
             <div class="player-container">
