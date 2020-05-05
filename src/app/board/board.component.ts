@@ -5,11 +5,11 @@ import { TokenModel } from '../core/models/token.model';
 import { DragDropModule, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
-    selector: 'app-room-component',
-    templateUrl: './room.component.html',
-    styleUrls: ['./room.component.scss']
+    selector: 'app-board-component',
+    templateUrl: './board.component.html',
+    styleUrls: ['./board.component.scss']
   })
-export class RoomComponent implements OnInit {
+export class BoardComponent implements OnInit {
 
   imgWidth: number;
   imgHeight: number;

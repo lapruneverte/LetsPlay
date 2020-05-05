@@ -3,10 +3,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { RoomModel } from '../core/models/room.model';
 import { NgForm } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
-import { TokenModel } from '../core/models/token.model';
-import { PlayerModel } from '../core/models/player.model';
 import { v4 } from 'uuid';
 import { UtilsService } from '../services/utils.service';
+import { StoreModel } from '../core/models/store.model';
 
 @Component({
   selector: 'app-new-room',
@@ -38,7 +37,6 @@ export class NewRoomComponent {
           this.firebaseService.getAsset(f.value.selectGameType).then(result => {
             this.newRoom.tokens = result.data().tokens;  
             this.newRoom.store = result.data().cards.store;
-            this.newRoom.other = result.data().cards.other;
             this.firebaseService.createRoom(this.newRoom).then( res => {
               this.dialogRef.close();
             });

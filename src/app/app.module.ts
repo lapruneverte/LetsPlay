@@ -7,7 +7,7 @@ import { rootRouterConfig } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
-import { RoomComponent } from './room/room.component';
+import { BoardComponent } from './board/board.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -32,12 +32,13 @@ import { NewPlayerComponent } from './new-player/new-player.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { PlayerStatusComponent } from './player-status/player-status.component';
 import { StoreComponent } from './store/store.component';
+import { DeckComponent } from './deck/deck.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    RoomComponent,
+    BoardComponent,
     PlayerComponent,
     RoomListComponent,
     NewRoomComponent,
@@ -46,6 +47,7 @@ import { StoreComponent } from './store/store.component';
     NewPlayerComponent,
     PlayerStatusComponent,
     StoreComponent,
+    DeckComponent,
   ],
   entryComponents: [],
   imports: [

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RoomModel } from '../core/models/room.model';
+import { CardModel } from '../core/models/card.model';
 
 @Component({
   selector: 'app-store',
@@ -13,6 +14,11 @@ export class StoreComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  putCardInPlayed(card: CardModel) {
+    let playerId = sessionStorage.getItem('playerId');
+    this.room.players.find( p => p.playerId === playerId).played.unshift(card);
   }
 
 }

@@ -2,13 +2,8 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="decks-collection">
-                <div *ngFor="let card of room.other; let i = index">
-                    <img [src]=card.link class="card-image-small card-item">
-                </div>
-            </div>
-            <div class="decks-collection">
-                <div class="deck-container center" *ngFor="let number of [0,1,2,3,4,5]; let i = index">
-                    <img *ngIf="room.store[i]" [src]=room.store[i].link class="card-image-small card-item">
+                <div *ngFor="let storeElement of room.store; let i = index">
+                    <img *ngIf="storeElement != null" [src]=storeElement.card.link class="card-image-small card-item">
                 </div>
             </div>
         </div>

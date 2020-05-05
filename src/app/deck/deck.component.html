@@ -1,0 +1,7 @@
+<div class="deck-container">
+    <img *ngIf="cards.length > 0" 
+        [src]="reverseImage ? reverseImage : cards[0].link" 
+        (click)="pickCard()"
+        [ngClass]="enabled ? 'clickable' : ''"
+        class="card-image-small">
+</div>

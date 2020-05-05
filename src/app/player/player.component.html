@@ -2,14 +2,14 @@
     <div class="row">
         <div class="col-6">
             <div class="center">Draw pile {{player.deck.length}}</div>
-            <div class="deck-container center">
-                <img *ngIf="player.deck.length > 0" [src]=cardBackside.link class="card-image-small" [ngClass]="(player.deck.length > 0) ? 'clickable':'not-clickable'" (click)="shiftCard()">
+            <div class="deck center">
+                <app-deck [cards]="player.deck" [reverseImage]="cardBackside.link" (onPick)="putCardInHand($event)"></app-deck>
             </div>
         </div>
         <div class="col-6">
             <div class="center">Discard pile {{player.played.length}}</div>
-            <div class="deck-container center">
-                <img *ngIf="player.played.length > 0" [src]=player.played[player.played.length-1].link class="card-image-small">
+            <div class="deck center">
+                <app-deck [cards]="player.played" [enabled]="false"></app-deck>
             </div>
             <div class="center">
                 <button class="btn btn-primary" (click)="shuffle()">Shuffle</button>

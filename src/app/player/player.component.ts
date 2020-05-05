@@ -67,6 +67,11 @@ export class PlayerComponent implements OnInit {
     this.isMenuVisible = false;
   }
 
+  putCardInHand(card: CardModel) {
+    this.player.inHand.push(card);
+    this.cardsChanged();
+  }
+
   moveFromInHandToDeck() {
     this.player.deck.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
     this.cardsChanged();
@@ -85,7 +90,7 @@ export class PlayerComponent implements OnInit {
   }
 
   play() {
-    this.player.played.push(...this.player.preview);
+    this.player.played.unshift(...this.player.preview);
     this.player.preview = [];
     this.cardsChanged();
   }

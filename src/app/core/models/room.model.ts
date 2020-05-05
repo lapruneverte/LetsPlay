@@ -1,6 +1,7 @@
 import { TokenModel } from './token.model';
 import { PlayerModel } from './player.model';
 import { CardModel } from './card.model';
+import { StoreModel } from './store.model';
 
 export class RoomModel {
     name: string;
@@ -10,8 +11,7 @@ export class RoomModel {
     link: string;
     tokens: TokenModel[];
     players?: PlayerModel[];
-    store: CardModel[];
-    other: CardModel[];
+    store: StoreModel[];
     id: string;
 
     constructor() {};
