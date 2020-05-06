@@ -3,6 +3,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { CardModel } from '../core/models/card.model';
 import { PlayerModel } from '../core/models/player.model';
 import { UtilsService } from '../services/utils.service';
+import { ZoomModel } from '../core/models/zoom.model';
 
 @Component({
   selector: 'app-player',
@@ -13,6 +14,7 @@ export class PlayerComponent implements OnInit {
 
   @Input() player: PlayerModel;
   @Output() playerChanged = new EventEmitter<PlayerModel>();
+  @Output() onZoom = new EventEmitter<ZoomModel>();
 
   cardBackside: CardModel;
   isMenuVisible: boolean = false;
@@ -20,8 +22,6 @@ export class PlayerComponent implements OnInit {
   menuY: number;
   selectedCardIndex: number;
   lastTarget: any;
-  zoomImageSrc: string;
-  zoom: boolean;
 
   constructor(public firebaseService: FirebaseService, public utils: UtilsService) { }
 
@@ -44,7 +44,6 @@ export class PlayerComponent implements OnInit {
   }
 
   showMenu(event: MouseEvent, i:number) {
-    this.zoom = false;
     if (event.view.innerWidth - event.x < 170) {
       this.menuX = event.x - 160;
     } else {
@@ -104,12 +103,11 @@ export class PlayerComponent implements OnInit {
   }
 
   zoomImage() {
-    this.zoom = true;
-    this.zoomImageSrc = this.player.inHand[this.selectedCardIndex].link;
     this.closeMenu();
-  }
-
-  closeZoom() {
-    this.zoom = false;
+    let zoomData = new ZoomModel();
+    zoomData.x = this.menuX;
+    zoomData.y = this.menuY;
+    zoomData.src = this.player.inHand[this.selectedCardIndex].link;
+    this.onZoom.emit(zoomData);
   }
 }

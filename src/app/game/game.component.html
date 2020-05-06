@@ -3,24 +3,26 @@
     <div class="row">
         <div class="col-9 tabs-container">
             <mat-tab-group animationDuration="0ms">
-                <mat-tab label="Store">
-                    <app-store [room]=room></app-store>
-                </mat-tab>
                 <mat-tab label="Board">
                     <app-board-component [room]=room></app-board-component>
+                </mat-tab>
+                <mat-tab label="Store">
+                    <app-store [room]=room (onZoom)="onZoom($event)"></app-store>
                 </mat-tab>
             </mat-tab-group>
         </div>
         <div class="col-3">
             <div class="player-container">
-                <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event)></app-player>
+                <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event) (onZoom)="onZoom($event)"></app-player>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <app-player-status [room]=room></app-player-status>
+            <app-player-status [room]=room (onZoom)="onZoom($event)"></app-player-status>
         </div>
     </div>
+    <div (click)="closeZoom()" *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': zoomX + 'px', 'top': zoomY + 'px'}">
+        <img [src]=zoomImageSrc>
+    </div>
 </div>
-  

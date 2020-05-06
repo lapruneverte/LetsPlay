@@ -11,6 +11,10 @@
     height: 450px;
 }
 
+.row {
+    margin-bottom: 30px;
+}
+
 .decks-collection {
     display: flex;
     justify-content: space-evenly;
@@ -20,6 +24,9 @@
 .store-item-container {
     height: 110px;
     width: 85px;
+}
+
+.with-border {
     border: 2px solid grey;
     border-radius: 5px;
 }

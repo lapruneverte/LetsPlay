@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { RoomModel } from '../core/models/room.model';
+import { ZoomModel } from '../core/models/zoom.model';
 
 @Component({
   selector: 'app-player-status',
@@ -8,31 +9,25 @@ import { RoomModel } from '../core/models/room.model';
 })
 export class PlayerStatusComponent implements OnInit {
   @Input() room: RoomModel;
-
-  zoom: boolean;
-  zoomImageSrc: string;
-  zoomX: number;
-  zoomY: number;
+  @Output() onZoom = new EventEmitter<ZoomModel>();
   
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
   zoomImage(event: MouseEvent, playerIndex: number, cardIndex: number) {
-    this.zoom = true;
-    this.zoomImageSrc = this.room.players[playerIndex].preview[cardIndex].link;
+    let zoomData = new ZoomModel();
+
     if (event.view.innerWidth - event.x < 170) {
-      this.zoomX = event.x - 160;
+      zoomData.x = event.x - 160;
     } else {
-      this.zoomX = event.x;
+      zoomData.x = event.x;
     }
 
-    this.zoomY = event.y - 200;
-  }
+    zoomData.y = event.y - 200;
+    zoomData.src = this.room.players[playerIndex].preview[cardIndex].link;
 
-  closeZoom() {
-    this.zoom = false;
+    this.onZoom.emit(zoomData);
   }
-
 }

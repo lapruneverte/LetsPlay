@@ -5,13 +5,7 @@
         <p>Deck {{player.deck.length}}</p>
         <p>Played {{player.played.length}}</p>
         <div class="cards-container">
-            <div *ngFor="let card of player.preview; let cardIndex = index">
-                <img [src]=card.link class="card-image-small clickable" (click)="zoomImage($event, playerIndex, cardIndex)">
-            </div>
+            <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, playerIndex, cardIndex)" [cardImage]="card.link"></app-card>
         </div>
     </div>
-</div>
-
-<div (click)="closeZoom()" *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': zoomX + 'px', 'top': zoomY + 'px'}">
-    <img [src]=zoomImageSrc>
 </div>

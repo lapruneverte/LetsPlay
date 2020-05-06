@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomModel } from '../core/models/room.model';
 import { PlayerModel } from '../core/models/player.model';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ZoomModel } from '../core/models/zoom.model';
 
 @Component({
   selector: 'app-game',
@@ -16,6 +17,10 @@ export class GameComponent implements OnInit {
   room: RoomModel;
   isDataLoaded: boolean = false;
   playerId: string;
+  zoomX: number;
+  zoomY: number;
+  zoom: boolean = false;
+  zoomImageSrc: string;
 
   constructor(
   public firebaseService: FirebaseService,
@@ -47,6 +52,17 @@ export class GameComponent implements OnInit {
     this.room.players[index] = player;
 
     this.firebaseService.updatePlayers(this.room.id, this.room.players);
+  }
+
+  closeZoom() {
+    this.zoom = false;
+  }
+
+  onZoom(event: ZoomModel){
+    this.zoomX = event.x;
+    this.zoomY = event.y;
+    this.zoomImageSrc = event.src;
+    this.zoom = true;
   }
 
 }
