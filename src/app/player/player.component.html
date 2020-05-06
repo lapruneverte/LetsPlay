@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<ul (clickOutside)="onClickOutsideMenu($event)" id="context1" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
+<ul (clickOutside)="onClickOutsideMenu($event)" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
     <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreview()">Play</a></li>
     <li><a role="button" class="dropdown-item" (click)="moveFromInHandToDeck()">To Deck</a></li>
     <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>
