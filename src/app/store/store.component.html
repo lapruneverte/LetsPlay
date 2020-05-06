@@ -1,14 +1,24 @@
 <div class="store-viewport">
-    <div class="store-container">
-        <div class="row other-decks">
+    <div class="store-container" id="store">
+        <div class="row">
             <div class="decks-collection">
-                <app-card *ngFor="let storeCard of room.store; let i = index" [cardImage]="storeCard.card.link" cdkDrag [cdkDragFreeDragPosition]="storeCard.position" (cdkDragEnded)="updateData($event,i)"></app-card>
+                <div *ngFor="let number of [12,13,14,15,16,17]">
+                    <app-card *ngIf="room.store[number]" [cardImage]="room.store[number].card.link" [draggable]="true" (dragEnd)="updateData($event,number)" [position]="room.store[number].position"></app-card>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="decks-collection">
+                <div *ngFor="let number of [6,7,8,9,10,11]">
+                    <app-card *ngIf="room.store[number]" [cardImage]="room.store[number].card.link" [draggable]="true" (dragEnd)="updateData($event,number)" [position]="room.store[number].position"></app-card>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-8">
                 <div class="decks-collection">
                     <div *ngFor="let number of [0,1,2,3,4,5]" class="store-item-container">
+                        <app-card *ngIf="room.store[number]" [cardImage]="room.store[number].card.link" [draggable]="true" (dragEnd)="updateData($event,number)" [position]="room.store[number].position"></app-card>
                     </div>
                 </div>
             </div>

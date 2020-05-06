@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RoomModel } from '../core/models/room.model';
 import { CardModel } from '../core/models/card.model';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-store',
@@ -11,7 +12,7 @@ import { CardModel } from '../core/models/card.model';
 export class StoreComponent implements OnInit {
   @Input() room: RoomModel;
 
-  constructor() { }
+  constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,9 @@ export class StoreComponent implements OnInit {
   }
 
   updateData($event,i) {
-    console.log($event);
+    this.room.store[i].position.x = this.room.store[i].position.x + $event.distance.x;
+    this.room.store[i].position.y = this.room.store[i].position.y + $event.distance.y;
+    this.firebaseService.updateStore(this.room.id, this.room.store);
   }
 
 }

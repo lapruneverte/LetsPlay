@@ -1,3 +1,4 @@
 <div [ngClass]="clickable ? 'clickable' : ''" (click)="onClick($event)">
-    <img [src]=cardImage class="card-image-small">
+    <img *ngIf="draggable" [src]=cardImage class="card-image-small" cdkDrag (cdkDragEnded)="onDragEnd($event)" [cdkDragFreeDragPosition]="position">
+    <img *ngIf="!draggable" [src]=cardImage class="card-image-small">
 </div>

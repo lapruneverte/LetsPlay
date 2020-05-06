@@ -36,7 +36,3 @@
     <li><a role="button" class="dropdown-item" (click)="moveFromInHandToDeck()">To Deck</a></li>
     <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>
 </ul>
-
-<div (click)="closeZoom()" *ngIf="zoom" class="zoom-image-container" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px'}">
-    <img [src]=zoomImageSrc>
-</div>
