@@ -51,7 +51,7 @@ import { ZoomComponent } from './zoom/zoom.component';
     StoreComponent,
     DeckComponent,
     CardComponent,
-    ZoomComponent,
+    ZoomComponent
   ],
   entryComponents: [],
   imports: [

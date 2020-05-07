@@ -4,8 +4,8 @@
         <p>InHand {{player.inHand.length}}</p>
         <p>Deck {{player.deck.length}}</p>
         <p>Discarded {{player.played.length}}</p>
-        <div class="cards-container">
-            <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, playerIndex, cardIndex)" [cardImage]="card.link"></app-card>
+        <div *ngIf="player.preview" class="cards-container">
+            <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, playerIndex, cardIndex)" [card]="card"></app-card>
         </div>
     </div>
 </div>

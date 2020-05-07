@@ -15,6 +15,7 @@ export class NewPlayerComponent {
 
   roomId: string;
   gameType: string;
+  disabled: boolean= false;
 
   constructor(public firebaseService: FirebaseService, 
     public dialogRef: MatDialogRef<NewPlayerComponent>, 
@@ -30,16 +31,19 @@ export class NewPlayerComponent {
   }
 
   createPlayer(f: NgForm) {
-    if (f.valid) {
+    if (!this.disabled) {
+      if (f.valid) {
+        this.disabled = true;
         this.firebaseService.getAsset(this.gameType).then(result => {
-        let player = new PlayerModel(f.value.inputPlayerName);
-        player.playerId = v4();
-        player.deck = this.utils.shuffleArray(result.data().cards.player);
-        this.firebaseService.addPlayer(this.roomId, player).then( result => {
-          this.dialogRef.close();
+          let player = new PlayerModel(f.value.inputPlayerName);
+          player.playerId = v4();
+          player.deck = this.utils.shuffleArray(result.data().cards.player);
+          this.firebaseService.addPlayer(this.roomId, player).then( result => {
+            this.dialogRef.close();
+          });
         });
-      });
-    }   
+      } 
+    }
   }
 
 }

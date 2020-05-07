@@ -13,6 +13,7 @@ export class JoinRoomComponent {
 
   room: RoomModel;
   error: string;
+  disabled: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<JoinRoomComponent>, 
     @Inject(MAT_DIALOG_DATA) public data,
@@ -25,13 +26,17 @@ export class JoinRoomComponent {
   }
 
   joinRoom(f: NgForm){
-    this.error = null;
-    if (f.valid) {
-      if (f.value.inputPasswordJoin === this.room.password) {
-        this.dialogRef.close();
-        this.router.navigate(['/hall', this.room.id]);
-      } else {
-        this.error = "Incorrect password";
+    if (!this.disabled) {
+      this.error = null;
+      if (f.valid) {
+        this.disabled = true;
+        if (f.value.inputPasswordJoin === this.room.password) {
+          this.dialogRef.close();
+          this.router.navigate(['/hall', this.room.id]);
+        } else {
+          this.disabled = false;
+          this.error = "Incorrect password";
+        }
       }
     }
   }

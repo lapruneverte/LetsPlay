@@ -12,27 +12,28 @@
                 <app-deck [cards]="player.played" [enabled]="false"></app-deck>
             </div>
             <div class="center">
-                <button class="btn btn-primary" (click)="shuffle()">Shuffle</button>
+                <button class="btn btn-primary" (click)="shuffle()" [disabled]="!(this.player.deck.length == 0 && this.player.played.length > 0)">Shuffle</button>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="center">Hand {{player.inHand.length}}</div>
-        <div class="cards-container">
-            <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [cardImage]="card.link"></app-card>
+        <div *ngIf="player.inHand" class="cards-container">
+            <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [card]="card"></app-card>
         </div>
     </div>
     <div class="row">
         <div class="center">Preview {{player.preview.length}}</div>
-        <div class="cards-container">
-            <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [cardImage]="card.link"></app-card>
+        <div *ngIf="player.preview" class="cards-container">
+            <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [card]="card"></app-card>
         </div>
-        <button class="btn btn-primary btn-block" (click)="play()">Confirm</button>
+        <button class="btn btn-primary btn-block" (click)="play()" [disabled]="player.preview.length <= 0">Confirm</button>
     </div>
 </div>
 
 <ul (clickOutside)="onClickOutsideMenu($event)" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
     <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreview()">Play</a></li>
+    <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreviewAndDelete()">Play and delete</a></li>
     <li><a role="button" class="dropdown-item" (click)="moveFromInHandToDeck()">To Deck</a></li>
     <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>
 </ul>

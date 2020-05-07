@@ -78,20 +78,34 @@ export class PlayerComponent implements OnInit {
   }
 
   moveFromHandToPreview() {
-    this.player.preview.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
+    let card = this.player.inHand.splice(this.selectedCardIndex,1)[0];
+    card.toDelete = false;
+    this.player.preview.push(card);
+    this.cardsChanged();
+    this.closeMenu();
+  }
+
+  moveFromHandToPreviewAndDelete() {
+    let card = this.player.inHand.splice(this.selectedCardIndex,1)[0];
+    card.toDelete = true;
+    this.player.preview.push(card);
     this.cardsChanged();
     this.closeMenu();
   }
 
   moveFromPreviewToHand(index: number) {
-    this.player.inHand.push(this.player.preview.splice(index,1)[0]);
+    let card = this.player.preview.splice(index,1)[0];
+    card.toDelete = false;
+    this.player.inHand.push(card);
     this.cardsChanged();
   }
 
   play() {
-    this.player.played.unshift(...this.player.preview);
-    this.player.preview = [];
-    this.cardsChanged();
+    if (this.player.preview && this.player.preview.length > 0) {
+      this.player.played.unshift(...this.player.preview.filter(item => item.toDelete == false));
+      this.player.preview = [];
+      this.cardsChanged();
+    }
   }
 
   shuffle() {
