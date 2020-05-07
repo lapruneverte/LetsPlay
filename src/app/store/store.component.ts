@@ -4,6 +4,7 @@ import { CardModel } from '../core/models/card.model';
 import { FirebaseService } from '../services/firebase.service';
 import { ZoomModel } from '../core/models/zoom.model';
 import { PlayerModel } from '../core/models/player.model';
+import { StoreLogModel } from '../core/models/store-log.model';
 
 @Component({
   selector: 'app-store',
@@ -33,7 +34,13 @@ export class StoreComponent implements OnInit {
     let player: PlayerModel = this.room.players.find( p => p.playerId === playerId);
     if (this.room.store[this.selectedCardIndex].quantity > 0) {
       this.room.store[this.selectedCardIndex].quantity--;
-      player.played.unshift(this.room.store[this.selectedCardIndex].card);  
+      player.played.unshift(this.room.store[this.selectedCardIndex].card); 
+      let storeLog = new StoreLogModel();
+      storeLog.playerName = player.name;
+      storeLog.card = this.room.store[this.selectedCardIndex].card;
+      this.room.storeLog.unshift(storeLog);
+
+      this.firebaseService.updateStoreLog(this.room.id, this.room.storeLog);
       this.firebaseService.updatePlayers(this.room.id, this.room.players);
       this.firebaseService.updateStore(this.room.id, this.room.store);
     }
@@ -52,6 +59,13 @@ export class StoreComponent implements OnInit {
     zoomData.x = this.menuX;
     zoomData.y = this.menuY;
     zoomData.src = this.room.store[this.selectedCardIndex].card.link;
+
+    this.onZoom.emit(zoomData);
+  }
+
+  zoomLogImage(card: CardModel) {
+    let zoomData = new ZoomModel();
+    zoomData.src = card.link;
 
     this.onZoom.emit(zoomData);
   }

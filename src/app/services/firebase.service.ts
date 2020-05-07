@@ -6,6 +6,7 @@ import { PlayerModel } from '../core/models/player.model';
 import * as firebase from 'firebase';
 import { TokenModel } from '../core/models/token.model';
 import { StoreCardModel } from '../core/models/store-card.model';
+import { StoreLogModel } from '../core/models/store-log.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,13 @@ export class FirebaseService {
     let roomRef = this.db.collection('rooms').doc(roomId);
     return roomRef.update({
       store: JSON.parse(JSON.stringify(store))
+    });
+  }
+
+  updateStoreLog(roomId: string, storeLog: StoreLogModel[]) {
+    let roomRef = this.db.collection('rooms').doc(roomId);
+    return roomRef.update({
+      storeLog: JSON.parse(JSON.stringify(storeLog))
     });
   }
 
