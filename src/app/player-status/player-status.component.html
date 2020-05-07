@@ -1,10 +1,10 @@
 <div class="players">
-    <div *ngFor="let player of room.players; let playerIndex = index" class="card bg-light mb-3 player">
+    <div *ngFor="let player of roomPlayers(); let playerIndex = index" class="card bg-light mb-3">
         <div class="card-header">{{player.name}}</div>
         <div class="card-body">
-            <p>InHand {{player.inHand.length}}</p>
-            <p>Draw pile {{player.deck.length}}</p>
-            <p>Discard pile {{player.played.length}}</p>
+            <p [@simpleFadeAnimation]="player.inHand.length">InHand {{player.inHand.length}}</p>
+            <p [@simpleFadeAnimation]="player.deck.length">Draw pile {{player.deck.length}}</p>
+            <p [@simpleFadeAnimation]="player.played.length">Discard pile {{player.played.length}}</p>
             <p>Preview:</p>
             <div *ngIf="player.preview" class="cards-container">
                 <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, playerIndex, cardIndex)" [card]="card"></app-card>
