@@ -4,6 +4,7 @@ import { RoomModel } from '../core/models/room.model';
 import { FirebaseService } from '../services/firebase.service';
 import { NewPlayerComponent } from '../new-player/new-player.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PasswordModalComponent } from '../password-modal/password-modal.component';
 
 @Component({
   selector: 'app-hall',
@@ -39,6 +40,18 @@ export class HallComponent implements OnInit {
   pickPlayer(i: number) {
     sessionStorage.setItem('playerId', this.room.players[i].playerId);
     this.router.navigate(['/game', this.room.id]);
+  }
+
+  pickPlayerWithPassword(i: number) {
+    const dialogRef = this.dialog.open(PasswordModalComponent, {
+      width: '700px',
+      data: {
+        name: this.room.players[i].name,
+        id: this.room.players[i].playerId,
+        //password: this.room.players[i].password,
+        destination: '/game'
+      }
+    });
   }
 
   newPlayer() {

@@ -36,6 +36,7 @@ import { DeckComponent } from './deck/deck.component';
 import { CardComponent } from './card/card.component';
 import { ZoomComponent } from './zoom/zoom.component';
 import { MatCardModule } from '@angular/material/card';
+import { PasswordModalComponent } from './password-modal/password-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MatCardModule } from '@angular/material/card';
     StoreComponent,
     DeckComponent,
     CardComponent,
-    ZoomComponent
+    ZoomComponent,
+    PasswordModalComponent
   ],
   entryComponents: [],
   imports: [

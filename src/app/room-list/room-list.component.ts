@@ -4,6 +4,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { RoomModel } from '../core/models/room.model';
 import { NewRoomComponent } from '../new-room/new-room.component'
 import { JoinRoomComponent } from '../join-room/join-room.component'
+import { PasswordModalComponent } from '../password-modal/password-modal.component';
 
 @Component({
   selector: 'app-room-list-component',
@@ -45,10 +46,20 @@ export class RoomListComponent implements OnInit {
   }
 
   joinRoom(i: number) {
-    const dialogRef = this.dialog.open(JoinRoomComponent, {
+    /* const dialogRef = this.dialog.open(JoinRoomComponent, {
       width: '700px',
       data: {
         room: this.rooms[i]
+      }
+    }); */
+    const dialogRef = this.dialog.open(PasswordModalComponent, {
+      width: '700px',
+      data: {
+        name: this.rooms[i].name,
+        id: this.rooms[i].id,
+        password: this.rooms[i].password,
+        destination: '/hall',
+        callback: () => console.log('callback!')
       }
     });
   }
