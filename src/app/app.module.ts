@@ -34,6 +34,7 @@ import { PlayerStatusComponent } from './player-status/player-status.component';
 import { StoreComponent } from './store/store.component';
 import { DeckComponent } from './deck/deck.component';
 import { CardComponent } from './card/card.component';
+import { ZoomComponent } from './zoom/zoom.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CardComponent } from './card/card.component';
     StoreComponent,
     DeckComponent,
     CardComponent,
+    ZoomComponent,
   ],
   entryComponents: [],
   imports: [
