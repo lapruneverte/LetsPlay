@@ -38,11 +38,6 @@ export class HallComponent implements OnInit {
   }
 
   pickPlayer(i: number) {
-    sessionStorage.setItem('playerId', this.room.players[i].playerId);
-    this.router.navigate(['/game', this.room.id]);
-  }
-
-  pickPlayerWithPassword(i: number) {
     const dialogRef = this.dialog.open(PasswordModalComponent, {
       width: '700px',
       data: {
