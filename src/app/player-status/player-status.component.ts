@@ -42,7 +42,6 @@ export class PlayerStatusComponent implements OnInit {
   }
 
   roomPlayers() {
-    //return this.room.players.filter(player => player.playerId != this.playerId);
-    return this.room.players;
+    return this.room.players.filter(player => player.playerId != this.playerId);
   }
 }
