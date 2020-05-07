@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { RoomModel } from '../core/models/room.model';
 import { ZoomModel } from '../core/models/zoom.model';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-player-status',

@@ -35,6 +35,7 @@ import { StoreComponent } from './store/store.component';
 import { DeckComponent } from './deck/deck.component';
 import { CardComponent } from './card/card.component';
 import { ZoomComponent } from './zoom/zoom.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ZoomComponent } from './zoom/zoom.component';
     MatDialogModule,
     MatTabsModule,
     DragDropModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    MatCardModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent],
