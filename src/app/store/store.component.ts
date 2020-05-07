@@ -20,6 +20,7 @@ export class StoreComponent implements OnInit {
   menuY: number;
   isMenuVisible: boolean = false;
   lastTarget: any;
+  dragged = false;
 
   constructor(public firebaseService: FirebaseService) { }
 
@@ -56,16 +57,20 @@ export class StoreComponent implements OnInit {
   }
 
   showMenu(event: MouseEvent, i:number) {
-    if (event.view.innerWidth - event.x < 170) {
-      this.menuX = event.x - 160;
-    } else {
-      this.menuX = event.x;
-    }
+    if (!this.dragged) {
+      if (event.view.innerWidth - event.x < 170) {
+        this.menuX = event.x - 160;
+      } else {
+        this.menuX = event.x;
+      }
 
-    this.menuY = event.y;
-    this.isMenuVisible = true;
-    this.selectedCardIndex = i;
-    this.lastTarget = event.target;
+      this.menuY = event.y;
+      this.isMenuVisible = true;
+      this.selectedCardIndex = i;
+      this.lastTarget = event.target;
+    }
+    event.stopPropagation();
+    this.dragged = false;
   }
 
   closeMenu() {
@@ -78,4 +83,8 @@ export class StoreComponent implements OnInit {
     }
   }
 
+  dragStart() {
+    console.log("drag");
+    this.dragged = true;
+  }
 }

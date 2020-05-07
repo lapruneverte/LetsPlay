@@ -7,8 +7,9 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Output() cardclicked: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() dragEnd: EventEmitter<any> = new EventEmitter();
+  @Output() dragStart: EventEmitter<any> = new EventEmitter();
   @Input() cardImage: string;
   @Input() clickable: boolean = true;
   @Input() draggable: boolean = false;
@@ -24,11 +25,15 @@ export class CardComponent implements OnInit {
 
   onClick(event: MouseEvent) {
     if (this.clickable) {
-      this.cardclicked.emit(event);
+      this.click.emit(event);
     }
   }
 
   onDragEnd(event) {
     this.dragEnd.emit(event);
+  }
+
+  onDragStart(event) {
+    this.dragStart.emit(event);
   }
 }
