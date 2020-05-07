@@ -36,6 +36,7 @@ export class NewRoomComponent {
             this.newRoom.name = f.value.inputRoom;
             this.newRoom.password = f.value.inputPassword;
             this.newRoom.owner = f.value.inputOwner;
+            this.newRoom.storeLog = [];
   
             this.firebaseService.getAsset(f.value.selectGameType).then(result => {
               this.newRoom.tokens = result.data().tokens;  
