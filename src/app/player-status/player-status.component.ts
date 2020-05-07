@@ -26,7 +26,7 @@ export class PlayerStatusComponent implements OnInit {
     this.playerId = sessionStorage.getItem('playerId');
   }
   
-  zoomImage(event: MouseEvent, playerIndex: number, cardIndex: number) {
+  zoomImage(event: MouseEvent, playerId: string, cardIndex: number) {
     let zoomData = new ZoomModel();
 
     if (event.view.innerWidth - event.x < 170) {
@@ -36,7 +36,7 @@ export class PlayerStatusComponent implements OnInit {
     }
 
     zoomData.y = event.y - 200;
-    zoomData.src = this.room.players[playerIndex].preview[cardIndex].link;
+    zoomData.src = this.room.players.find(player => player.playerId == playerId).preview[cardIndex].link;
 
     this.onZoom.emit(zoomData);
   }

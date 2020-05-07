@@ -21,7 +21,7 @@
             
             <p>Preview:</p>
             <div *ngIf="player.preview" class="cards-container">
-                <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, playerIndex, cardIndex)" [card]="card"></app-card>
+                <app-card *ngFor="let card of player.preview; let cardIndex = index" (click)="zoomImage($event, player.playerId, cardIndex)" [card]="card"></app-card>
             </div>
         </div>
     </div>
