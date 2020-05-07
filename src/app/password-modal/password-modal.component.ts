@@ -5,9 +5,9 @@ import { NgForm } from '@angular/forms';
 
 export class PasswordModalData {
   name: string;
-  id: string;
   password: string;
   destination: string;
+  destinationId: string;
   callback?: () => void;
 }
 
@@ -42,7 +42,7 @@ export class PasswordModalComponent {
           if (this.passwordModalData.callback)  {
             this.passwordModalData.callback();
           }
-          this.router.navigate([this.passwordModalData.destination, this.passwordModalData.id]);
+          this.router.navigate([this.passwordModalData.destination, this.passwordModalData.destinationId]);
         } else {
           this.disabled = false;
           this.error = "Incorrect password";

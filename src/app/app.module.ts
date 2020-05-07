@@ -26,7 +26,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { PlayerComponent } from './player/player.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { NewRoomComponent } from './new-room/new-room.component';
-import { JoinRoomComponent } from './join-room/join-room.component';
 import { HallComponent } from './hall/hall.component';
 import { NewPlayerComponent } from './new-player/new-player.component';
 import { ClickOutsideModule } from 'ng-click-outside';
@@ -46,7 +45,6 @@ import { PasswordModalComponent } from './password-modal/password-modal.componen
     PlayerComponent,
     RoomListComponent,
     NewRoomComponent,
-    JoinRoomComponent,
     HallComponent,
     NewPlayerComponent,
     PlayerStatusComponent,

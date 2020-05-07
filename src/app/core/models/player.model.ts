@@ -9,13 +9,15 @@ export class PlayerModel {
     preview: CardModel[];
     cardBackside: CardModel;
     blockades: number;
+    password: string;
 
-    constructor(name: string) {
+    constructor(name: string, password: string) {
         this.name = name;
         this.deck = [];
         this.inHand = [];
         this.played = [];
         this.preview = [];
         this.blockades = 0;
+        this.password = password;
     };
 }

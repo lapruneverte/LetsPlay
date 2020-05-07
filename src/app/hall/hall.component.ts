@@ -47,9 +47,10 @@ export class HallComponent implements OnInit {
       width: '700px',
       data: {
         name: this.room.players[i].name,
-        id: this.room.players[i].playerId,
-        //password: this.room.players[i].password,
-        destination: '/game'
+        password: this.room.players[i].password,
+        destination: '/game',
+        destinationId: this.room.id,
+        callback: () => sessionStorage.setItem('playerId', this.room.players[i].playerId)
       }
     });
   }

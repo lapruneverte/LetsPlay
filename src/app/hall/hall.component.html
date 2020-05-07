@@ -12,7 +12,7 @@
             <tr *ngFor="let player of room.players; let i = index">
               <th scope="row">{{player.name}}</th>
               <td>
-                <button type="button" class="btn btn-primary" (click)="pickPlayer(i)"><i class="far fa-play"></i>Pick</button>
+                <button type="button" class="btn btn-primary" (click)="pickPlayerWithPassword(i)"><i class="far fa-play"></i>Pick</button>
               </td>
             </tr>
           </tbody>
