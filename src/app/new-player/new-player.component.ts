@@ -36,6 +36,7 @@ export class NewPlayerComponent {
         this.disabled = true;
         this.firebaseService.getAsset(this.gameType).then(result => {
           let player = new PlayerModel(f.value.inputPlayerName);
+          player.cardBackside = result.data().cards.backside;
           player.playerId = v4();
           player.deck = this.utils.shuffleArray(result.data().cards.player);
           this.firebaseService.addPlayer(this.roomId, player).then( result => {

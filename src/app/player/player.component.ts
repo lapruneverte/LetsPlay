@@ -16,7 +16,6 @@ export class PlayerComponent implements OnInit {
   @Output() playerChanged = new EventEmitter<PlayerModel>();
   @Output() onZoom = new EventEmitter<ZoomModel>();
 
-  cardBackside: CardModel;
   isMenuVisible: boolean = false;
   menuX: number;
   menuY: number;
@@ -26,10 +25,6 @@ export class PlayerComponent implements OnInit {
   constructor(public firebaseService: FirebaseService, public utils: UtilsService) { }
 
   ngOnInit(): void {
-    this.firebaseService.getCardBackside()
-    .subscribe((result: CardModel) => {
-      this.cardBackside = result;
-    });
   }
 
   shiftCard(): void {
@@ -123,5 +118,15 @@ export class PlayerComponent implements OnInit {
     zoomData.y = this.menuY;
     zoomData.src = this.player.inHand[this.selectedCardIndex].link;
     this.onZoom.emit(zoomData);
+  }
+
+  addBlockade() {
+    this.player.blockades++;
+    this.cardsChanged();
+  }
+
+  subtractBlockade() {
+    this.player.blockades--;
+    this.cardsChanged();
   }
 }

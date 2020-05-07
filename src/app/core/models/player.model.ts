@@ -7,6 +7,8 @@ export class PlayerModel {
     inHand: CardModel[];
     played: CardModel[];
     preview: CardModel[];
+    cardBackside: CardModel;
+    blockades: number;
 
     constructor(name: string) {
         this.name = name;
@@ -14,5 +16,6 @@ export class PlayerModel {
         this.inHand = [];
         this.played = [];
         this.preview = [];
+        this.blockades = 0;
     };
 }

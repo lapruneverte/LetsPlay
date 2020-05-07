@@ -1,5 +1,4 @@
 <div *ngIf="isDataLoaded">
-    Let's play user {{getPlayerData().name}}!
     <div class="row">
         <div class="col-9 tabs-container">
             <mat-tab-group animationDuration="0ms">
@@ -13,6 +12,7 @@
         </div>
         <div class="col-3">
             <div class="player-container">
+                <p>Let's play user {{getPlayerData().name}}!</p>
                 <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event) (onZoom)="onZoom($event)"></app-player>
             </div>
         </div>

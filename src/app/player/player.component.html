@@ -1,34 +1,35 @@
-<div *ngIf="cardBackside">
-    <div class="row">
-        <div class="col-6">
-            <div class="center">Draw pile {{player.deck.length}}</div>
-            <div class="deck center">
-                <app-deck [cards]="player.deck" [reverseImage]="cardBackside.link" (onPick)="putCardInHand($event)"></app-deck>
-            </div>
+<div class="row">
+    <div class="col-6">
+        <div class="center">Draw pile: {{player.deck.length}}</div>
+        <div class="deck center">
+            <app-deck [cards]="player.deck" [reverseImage]="player.cardBackside.link" (onPick)="putCardInHand($event)"></app-deck>
         </div>
-        <div class="col-6">
-            <div class="center">Discard pile {{player.played.length}}</div>
-            <div class="deck center">
-                <app-deck [cards]="player.played" [enabled]="false"></app-deck>
-            </div>
-            <div class="center">
-                <button class="btn btn-primary" (click)="shuffle()" [disabled]="!(this.player.deck.length == 0 && this.player.played.length > 0)">Shuffle</button>
-            </div>
+        <div class="center">
+            Blockades: <button class="btn btn-secondary btn-sm" (click)="subtractBlockade()">-</button>&nbsp;{{player.blockades}}&nbsp;<button class="btn btn-primary btn-sm" (click)="addBlockade()">+</button>
         </div>
     </div>
-    <div class="row">
-        <div class="center">Hand {{player.inHand.length}}</div>
-        <div *ngIf="player.inHand" class="cards-container">
-            <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [card]="card"></app-card>
+    <div class="col-6">
+        <div class="center">Discard pile: {{player.played.length}}</div>
+        <div class="deck center">
+            <app-deck [cards]="player.played" [enabled]="false"></app-deck>
+        </div>
+        <div class="center">
+            <button class="btn btn-primary" (click)="shuffle()" [disabled]="!(this.player.deck.length == 0 && this.player.played.length > 0)">Shuffle</button>
         </div>
     </div>
-    <div class="row">
-        <div class="center">Preview {{player.preview.length}}</div>
-        <div *ngIf="player.preview" class="cards-container">
-            <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [card]="card"></app-card>
-        </div>
-        <button class="btn btn-primary btn-block" (click)="play()" [disabled]="player.preview.length <= 0">Confirm</button>
+</div>
+<div class="row">
+    <div class="center">Hand: {{player.inHand.length}}</div>
+    <div *ngIf="player.inHand" class="cards-container">
+        <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [card]="card"></app-card>
     </div>
+</div>
+<div class="row">
+    <div class="center">Preview: {{player.preview.length}}</div>
+    <div *ngIf="player.preview" class="cards-container">
+        <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [card]="card"></app-card>
+    </div>
+    <button class="btn btn-primary btn-block" (click)="play()" [disabled]="player.preview.length <= 0">Confirm</button>
 </div>
 
 <ul (clickOutside)="onClickOutsideMenu($event)" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">

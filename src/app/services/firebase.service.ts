@@ -52,10 +52,6 @@ export class FirebaseService {
     return this.db.collection('rooms').doc(room.id).set(JSON.parse(JSON.stringify(room)));
   }
 
-  getCardBackside() {
-    return this.db.collection('cards').doc('backside').valueChanges();
-  }
-
   getRooms() {
     return this.db.collection('rooms').valueChanges();
   }
