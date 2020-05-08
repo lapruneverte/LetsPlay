@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { CardModel } from '../core/models/card.model';
-import { PlayerModel } from '../core/models/player.model';
-import { UtilsService } from '../services/utils.service';
-import { ZoomModel } from '../core/models/zoom.model';
+import { FirebaseService } from '../../../services/firebase.service';
+import { CardModel } from '../../../core/models/card.model';
+import { PlayerModel } from '../../../core/models/player.model';
+import { UtilsService } from '../../../services/utils.service';
+import { ZoomModel } from '../../../core/models/zoom.model';
 
 @Component({
   selector: 'app-player',

@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { FirebaseService } from '../services/firebase.service';
-import { PlayerModel } from '../core/models/player.model';
+import { FirebaseService } from '../../services/firebase.service';
+import { PlayerModel } from '../../core/models/player.model';
 import { v4 } from 'uuid';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UtilsService } from '../services/utils.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-new-player',

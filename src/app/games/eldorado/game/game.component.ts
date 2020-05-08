@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
-import { RoomModel } from '../core/models/room.model';
-import { PlayerModel } from '../core/models/player.model';
+import { RoomModel } from '../../../core/models/room.model';
+import { PlayerModel } from '../../../core/models/player.model';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ZoomModel } from '../core/models/zoom.model';
+import { ZoomModel } from '../../../core/models/zoom.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ZoomComponent } from '../zoom/zoom.component';
 

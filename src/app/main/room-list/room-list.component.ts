@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FirebaseService } from '../services/firebase.service';
-import { RoomModel } from '../core/models/room.model';
+import { FirebaseService } from '../../services/firebase.service';
+import { RoomModel } from '../../core/models/room.model';
 import { NewRoomComponent } from '../new-room/new-room.component'
 import { PasswordModalComponent } from '../password-modal/password-modal.component';
 

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { RoomModel } from '../core/models/room.model';
-import { CardModel } from '../core/models/card.model';
-import { FirebaseService } from '../services/firebase.service';
-import { ZoomModel } from '../core/models/zoom.model';
-import { PlayerModel } from '../core/models/player.model';
-import { StoreLogModel } from '../core/models/store-log.model';
+import { RoomModel } from '../../../core/models/room.model';
+import { CardModel } from '../../../core/models/card.model';
+import { FirebaseService } from '../../../services/firebase.service';
+import { ZoomModel } from '../../../core/models/zoom.model';
+import { PlayerModel } from '../../../core/models/player.model';
+import { StoreLogModel } from '../../../core/models/store-log.model';
 
 @Component({
   selector: 'app-store',

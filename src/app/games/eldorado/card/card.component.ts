@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { CardModel } from '../core/models/card.model';
+import { CardModel } from '../../../core/models/card.model';
 
 @Component({
   selector: 'app-card',
