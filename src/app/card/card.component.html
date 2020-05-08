@@ -1,4 +1,4 @@
 <div *ngIf="card" [ngClass]="[clickable ? 'clickable' : '', card.toDelete ? 'to-delete' : '']" class="card-container">
-    <img *ngIf="draggable" [src]=card.link class="card-image-small" cdkDrag (cdkDragEnded)="onDragEnd($event)" (cdkDragStarted)="onDragStart($event)" [cdkDragFreeDragPosition]="position">
+    <img *ngIf="draggable" [src]=card.link class="card-image-small" cdkDrag (cdkDragEnded)="onDragEnd($event)" (cdkDragStarted)="onDragStart($event)" [cdkDragFreeDragPosition]="position" [cdkDragBoundary]="boundary">
     <img *ngIf="!draggable" [src]=card.link class="card-image-small">
 </div>

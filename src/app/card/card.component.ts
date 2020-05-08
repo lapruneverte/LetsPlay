@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
     x: number,
     y: number
   };
+  @Input() boundary: string;
   
   constructor() { }
 
