@@ -1,0 +1,65 @@
+<div *ngIf="loaded">
+    <h2>Player cards</h2>
+    <div *ngFor="let card of assets.cards.player; let i = index" class="row">
+        <label class="col-form-label">Card Id:</label>
+        <div class="form-group col-3">
+            <input type="text" class="form-control" [(ngModel)]="card.cardId" (ngModelChange)="updateCardAssets()">
+        </div>
+        <label class="col-form-label">Link:</label>
+        <div class="form-group col-5">
+            <input type="text" class="form-control" [(ngModel)]="card.link" (ngModelChange)="updateCardAssets()">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary" (click)="copyPlayerCard(card)">Copy</button>
+            <button type="button" class="btn btn-danger" (click)="deletePlayerCard(i)">Delete</button>
+        </div>
+    </div>
+
+    <h2>Store cards</h2>
+    <div *ngFor="let card of assets.cards.store; let i = index" class="row">
+        <label class="col-form-label">Card Id:</label>
+        <div class="form-group col-3">
+            <input type="text" class="form-control" [(ngModel)]="card.card.cardId" (ngModelChange)="updateCardAssets()">
+        </div>
+        <label class="col-form-label">Link:</label>
+        <div class="form-group col-3">
+            <input type="text" class="form-control" [(ngModel)]="card.card.link" (ngModelChange)="updateCardAssets()">
+        </div>
+        <label class="col-form-label">Quantity:</label>
+        <div class="form-group col-2">
+            <input type="text" class="form-control" [(ngModel)]="card.quantity" (ngModelChange)="updateCardAssets()">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary" (click)="copyStoreCard(card)">Copy</button>
+            <button type="button" class="btn btn-danger" (click)="deleteStoreCard(i)">Delete</button>
+        </div>
+    </div>
+
+    <h2>Backside Card</h2>
+    <div class="row">
+        <label class="col-form-label">Card Id:</label>
+        <div class="form-group col-3">
+            <input type="text" class="form-control" [(ngModel)]="assets.cards.backside.cardId" (ngModelChange)="updateCardAssets()">
+        </div>
+        <label class="col-form-label">Link:</label>
+        <div class="form-group col-6">
+            <input type="text" class="form-control" [(ngModel)]="assets.cards.backside.link" (ngModelChange)="updateCardAssets()">
+        </div>
+    </div>
+
+    <h2>Tokens</h2>
+    <div *ngFor="let token of assets.tokens; let i = index" class="row">
+        <label class="col-form-label">Color:</label>
+        <div class="form-group col-3">
+            <input type="text" class="form-control" [(ngModel)]="token.color" (ngModelChange)="updateTokenAssets()">
+        </div>
+        <label class="col-form-label">Link:</label>
+        <div class="form-group col-5">
+            <input type="text" class="form-control" [(ngModel)]="token.link" (ngModelChange)="updateTokenAssets()">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary" (click)="copyToken(token)">Copy</button>
+            <button type="button" class="btn btn-danger" (click)="deleteToken(i)">Delete</button>
+        </div>
+    </div>
+</div>

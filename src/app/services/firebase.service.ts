@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { TokenModel } from '../core/models/token.model';
 import { StoreCardModel } from '../core/models/store-card.model';
 import { StoreLogModel } from '../core/models/store-log.model';
+import { ElDoradoAssetsModel } from '../admin/models/edit-assets.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,20 @@ export class FirebaseService {
 
   getAsset(assetId: string) {
     return this.db.collection('assets').doc(assetId).get().toPromise();
+  }
+
+  updateCardAssets(assetId: string, assets: ElDoradoAssetsModel) {
+    let roomRef = this.db.collection('assets').doc(assetId);
+    return roomRef.update({
+      cards: JSON.parse(JSON.stringify(assets.cards))
+    });
+  }
+
+  updateTokenAssets(assetId: string, assets: ElDoradoAssetsModel) {
+    let roomRef = this.db.collection('assets').doc(assetId);
+    return roomRef.update({
+      tokens: JSON.parse(JSON.stringify(assets.tokens))
+    });
   }
 
   uploadImage(fileBlob: File){

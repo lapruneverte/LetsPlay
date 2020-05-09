@@ -13,6 +13,7 @@ import { FirebaseService } from './services/firebase.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { HomeComponent } from './home/home.component';
     AngularFirestoreModule,
     MainModule,
     ElDoradoModule,
+    AdminModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent],
