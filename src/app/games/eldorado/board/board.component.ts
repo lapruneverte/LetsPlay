@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { RoomModel } from '../core/models/room.model';
-import { TokenModel } from '../core/models/token.model';
+import { FirebaseService } from '../../../services/firebase.service';
+import { RoomModel } from '../../../core/models/room.model';
 import { DragDropModule, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({

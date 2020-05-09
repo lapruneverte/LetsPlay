@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { RoomModel } from '../core/models/room.model';
+import { RoomModel } from '../../core/models/room.model';
 import { NgForm } from '@angular/forms';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { v4 } from 'uuid';
-import { UtilsService } from '../services/utils.service';
-import { StoreCardModel } from '../core/models/store-card.model';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-new-room',

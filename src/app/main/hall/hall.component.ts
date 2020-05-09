@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { RoomModel } from '../core/models/room.model';
-import { FirebaseService } from '../services/firebase.service';
+import { RoomModel } from '../../core/models/room.model';
+import { FirebaseService } from '../../services/firebase.service';
 import { NewPlayerComponent } from '../new-player/new-player.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordModalComponent } from '../password-modal/password-modal.component';
