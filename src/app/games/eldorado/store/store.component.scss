@@ -23,6 +23,7 @@
 .store-item-container {
     height: 110px;
     width: 85px;
+    text-align: center;
 }
 
 .with-border {
@@ -37,10 +38,5 @@
 
 .dropdown-item {
     cursor: pointer;
-}
-
-.log-container {
-    margin-left: -200px;
-    z-index: -1;
 }
 

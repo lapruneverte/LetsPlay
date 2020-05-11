@@ -1,23 +1,27 @@
 <div class="store-viewport">
     <div class="store-container">
         <div class="row">
-            <div class="col-10" id="store">
+            <div class="col-7" id="store">
                 <div class="row">
-                    <div class="decks-collection">
-                        <div *ngFor="let number of [12,13,14,15,16,17]" class="store-item-container">
-                            <app-card *ngIf="room.store[number] && room.store[number].quantity > 0" [card]="room.store[number].card" [draggable]="true" (dragEnd)="updatePosition($event,number)" (dragStart)="dragStart()" [position]="room.store[number].position" (click)="showMenu($event, number)" [boundary]="'#store'"></app-card>
+                    <div class="col-12">
+                        <div class="decks-collection">
+                            <div *ngFor="let number of [12,13,14,15,16,17]" class="store-item-container">
+                                <app-card *ngIf="room.store[number] && room.store[number].quantity > 0" [card]="room.store[number].card" [draggable]="true" (dragEnd)="updatePosition($event,number)" (dragStart)="dragStart()" [position]="room.store[number].position" (click)="showMenu($event, number)" [boundary]="'#store'"></app-card>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="decks-collection">
-                        <div *ngFor="let number of [6,7,8,9,10,11]" class="store-item-container">
-                            <app-card *ngIf="room.store[number] && room.store[number].quantity > 0" [card]="room.store[number].card" [draggable]="true" (dragEnd)="updatePosition($event,number)" (dragStart)="dragStart()" [position]="room.store[number].position" (click)="showMenu($event, number)" [boundary]="'#store'"></app-card>
+                    <div class="col-12">
+                        <div class="decks-collection">
+                            <div *ngFor="let number of [6,7,8,9,10,11]" class="store-item-container">
+                                <app-card *ngIf="room.store[number] && room.store[number].quantity > 0" [card]="room.store[number].card" [draggable]="true" (dragEnd)="updatePosition($event,number)" (dragStart)="dragStart()" [position]="room.store[number].position" (click)="showMenu($event, number)" [boundary]="'#store'"></app-card>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="decks-collection">
                             <div *ngFor="let number of [0,1,2,3,4,5]" class="store-item-container with-border">
                                 <app-card *ngIf="room.store[number] && room.store[number].quantity > 0" [card]="room.store[number].card" [draggable]="true" (dragEnd)="updatePosition($event,number)" (dragStart)="dragStart()" [position]="room.store[number].position" (click)="showMenu($event, number)" [boundary]="'#store'"></app-card>
@@ -26,10 +30,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 log-container">
+            <div class="col-5">
                 <div *ngFor="let storeLog of room.storeLog" class="row">
                     <p>Player {{storeLog.playerName}} bought:</p>
-                    <app-card [card]="storeLog.card" (click)="zoomLogImage(storeLog.card)" ></app-card>
+                    <app-card [card]="storeLog.card" (click)="zoomLogImage(storeLog.card)"></app-card>
                 </div>
             </div>
         </div>
