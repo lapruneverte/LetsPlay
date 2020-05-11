@@ -33,11 +33,13 @@ export class AdminComponent implements OnInit {
     this.updateCardAssets();
   }
 
-  copyStoreCard(card:StoreCardModel) {
+  copyStoreCard(storeCard:StoreCardModel) {
     let cardCopy = new StoreCardModel();
-    cardCopy.card = card.card;
-    cardCopy.position = card.position;
-    cardCopy.quantity = card.quantity;
+    cardCopy.card = new CardModel();
+    cardCopy.card.cardId = storeCard.card.cardId;
+    cardCopy.card.link = storeCard.card.link;
+    cardCopy.position = storeCard.position;
+    cardCopy.quantity = storeCard.quantity;
 
     this.assets.cards.store.push(cardCopy);
     this.updateCardAssets();
