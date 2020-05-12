@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FirebaseService } from '../../../services/firebase.service';
-import { CardModel } from '../../../core/models/card.model';
-import { PlayerModel } from '../../../core/models/player.model';
-import { UtilsService } from '../../../services/utils.service';
-import { ZoomModel } from '../../../core/models/zoom.model';
+import { CardModel } from 'src/app/core/models/card.model';
+import { PlayerModel } from 'src/app/core/models/player.model';
+import { UtilsService } from 'src/app/services/utils.service';
+import { ZoomModel } from 'src/app/core/models/zoom.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/core/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-player',
@@ -21,10 +23,13 @@ export class PlayerComponent implements OnInit {
   menuY: number;
   selectedCardIndex: number;
   lastTarget: any;
+  playerStatus: PlayerModel;
 
-  constructor(public firebaseService: FirebaseService, public utils: UtilsService) { }
+  constructor(public firebaseService: FirebaseService, public utils: UtilsService,
+     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.player = Object.assign(new PlayerModel(this.player.name, this.player.password), this.player);
   }
 
   shiftCard(): void {
@@ -96,11 +101,35 @@ export class PlayerComponent implements OnInit {
   }
 
   play() {
-    if (this.player.preview && this.player.preview.length > 0) {
-      this.player.played.unshift(...this.player.preview.filter(item => item.toDelete == false));
-      this.player.preview = [];
-      this.cardsChanged();
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Confirm', confirmMessage: 'Confirm play?'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.savePlayerStatus();
+        if (this.player.preview && this.player.preview.length > 0) {
+          this.player.played.unshift(...this.player.preview.filter(item => item.toDelete == false));
+          this.player.preview = [];
+          this.cardsChanged();
+        }
+      }
+    });
+  }
+
+  undoLast() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Undo', confirmMessage: 'Do you want to undo your last action?'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.player = this.playerStatus;
+        this.playerStatus = undefined;
+      }
+    });
+  }
+
+  savePlayerStatus() {
+    this.playerStatus = this.copyPlayer();
   }
 
   shuffle() {
@@ -128,5 +157,25 @@ export class PlayerComponent implements OnInit {
   subtractBlockade() {
     this.player.blockades--;
     this.cardsChanged();
+  }
+
+  private copyPlayer() {
+    let playerClone = new PlayerModel(this.player.name, this.player.password);
+    playerClone.blockades = this.player.blockades;
+    playerClone.password = this.player.password;
+    playerClone.cardBackside = this.copyCard(this.player.cardBackside);
+    this.player.deck.forEach( card => { playerClone.deck.push(this.copyCard(card)) });
+    this.player.inHand.forEach( card => { playerClone.inHand.push(this.copyCard(card)) });
+    this.player.played.forEach( card => { playerClone.played.push(this.copyCard(card)) });
+    this.player.preview.forEach( card => { playerClone.preview.push(this.copyCard(card)) });
+    return playerClone;
+  }
+
+  private copyCard(card: CardModel) {
+    let cardClone = new CardModel();
+    cardClone.cardId = card.cardId;
+    cardClone.link = card.link;
+    cardClone.toDelete = card.toDelete;
+    return cardClone;
   }
 }

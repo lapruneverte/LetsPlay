@@ -5,6 +5,8 @@ import { FirebaseService } from '../../../services/firebase.service';
 import { ZoomModel } from '../../../core/models/zoom.model';
 import { PlayerModel } from '../../../core/models/player.model';
 import { StoreLogModel } from '../../../core/models/store-log.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/core/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-store',
@@ -23,27 +25,39 @@ export class StoreComponent implements OnInit {
   lastTarget: any;
   dragged = false;
 
-  constructor(public firebaseService: FirebaseService) { }
+  constructor(public firebaseService: FirebaseService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   moveFromStoreToDiscard() {
     this.closeMenu();
-    let playerId = sessionStorage.getItem('playerId');
-    let player: PlayerModel = this.room.players.find( p => p.playerId === playerId);
-    if (this.room.store[this.selectedCardIndex].quantity > 0) {
-      this.room.store[this.selectedCardIndex].quantity--;
-      player.played.unshift(this.room.store[this.selectedCardIndex].card); 
-      let storeLog = new StoreLogModel();
-      storeLog.playerName = player.name;
-      storeLog.card = this.room.store[this.selectedCardIndex].card;
-      this.room.storeLog.unshift(storeLog);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { 
+        title: 'Buy', 
+        confirmMessage: 'Do you wish to buy? This action cannot be undone!',
+        imageSrc: this.room.store[this.selectedCardIndex].card.link
+      }
+    });
 
-      this.firebaseService.updateStoreLog(this.room.id, this.room.storeLog);
-      this.firebaseService.updatePlayers(this.room.id, this.room.players);
-      this.firebaseService.updateStore(this.room.id, this.room.store);
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        let playerId = sessionStorage.getItem('playerId');
+        let player: PlayerModel = this.room.players.find( p => p.playerId === playerId);
+        if (this.room.store[this.selectedCardIndex].quantity > 0) {
+          this.room.store[this.selectedCardIndex].quantity--;
+          player.played.unshift(this.room.store[this.selectedCardIndex].card); 
+          let storeLog = new StoreLogModel();
+          storeLog.playerName = player.name;
+          storeLog.card = this.room.store[this.selectedCardIndex].card;
+          this.room.storeLog.unshift(storeLog);
+    
+          this.firebaseService.updateStoreLog(this.room.id, this.room.storeLog);
+          this.firebaseService.updatePlayers(this.room.id, this.room.players);
+          this.firebaseService.updateStore(this.room.id, this.room.store);
+        }
+      }
+    });
   }
 
   updatePosition($event,i) {
@@ -98,7 +112,6 @@ export class StoreComponent implements OnInit {
   }
 
   dragStart() {
-    console.log("drag");
     this.dragged = true;
   }
 }

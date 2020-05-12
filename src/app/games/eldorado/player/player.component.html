@@ -30,6 +30,7 @@
         <app-card *ngFor="let card of player.preview; let i = index" (click)="moveFromPreviewToHand(i)" [card]="card"></app-card>
     </div>
     <button class="btn btn-primary btn-block" (click)="play()" [disabled]="player.preview.length <= 0">Confirm</button>
+    <button class="btn btn-secondary btn-block" (click)="undoLast()" [disabled]="!playerStatus">Undo</button>
 </div>
 
 <ul (clickOutside)="onClickOutsideMenu($event)" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">

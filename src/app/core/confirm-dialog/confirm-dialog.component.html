@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>{{data.confirmMessage}}</div>
+<div class="center image" *ngIf="data.imageSrc" >
+    <img [src]="data.imageSrc">
+</div>
+<div mat-dialog-actions class="center">
+  <button mat-raised-button color="primary" (click)="dialogRef.close(true)" cdkFocusInitial>Confirm</button>
+  <button mat-raised-button color="warn" (click)="dialogRef.close(false)">Cancel</button>
+</div>
