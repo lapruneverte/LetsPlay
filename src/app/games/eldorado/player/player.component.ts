@@ -122,14 +122,15 @@ export class PlayerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.player = this.playerStatus;
+        this.player = this.copyPlayer(this.playerStatus);
         this.playerStatus = undefined;
+        this.cardsChanged();
       }
     });
   }
 
   savePlayerStatus() {
-    this.playerStatus = this.copyPlayer();
+    this.playerStatus = this.copyPlayer(this.player);
   }
 
   shuffle() {
@@ -159,23 +160,22 @@ export class PlayerComponent implements OnInit {
     this.cardsChanged();
   }
 
-  private copyPlayer() {
-    let playerClone = new PlayerModel(this.player.name, this.player.password);
-    playerClone.blockades = this.player.blockades;
-    playerClone.password = this.player.password;
-    playerClone.cardBackside = this.copyCard(this.player.cardBackside);
-    this.player.deck.forEach( card => { playerClone.deck.push(this.copyCard(card)) });
-    this.player.inHand.forEach( card => { playerClone.inHand.push(this.copyCard(card)) });
-    this.player.played.forEach( card => { playerClone.played.push(this.copyCard(card)) });
-    this.player.preview.forEach( card => { playerClone.preview.push(this.copyCard(card)) });
+  private copyPlayer(player) {
+    let playerClone = Object.assign({}, player);
+    playerClone.cardBackside = this.copyCard(player.cardBackside);
+    playerClone.deck = [];
+    player.deck.forEach( card => { playerClone.deck.push(this.copyCard(card)) });
+    playerClone.inHand = [];
+    player.inHand.forEach( card => { playerClone.inHand.push(this.copyCard(card)) });
+    playerClone.played = [];
+    player.played.forEach( card => { playerClone.played.push(this.copyCard(card)) });
+    playerClone.preview = [];
+    player.preview.forEach( card => { playerClone.preview.push(this.copyCard(card)) });
     return playerClone;
   }
 
-  private copyCard(card: CardModel) {
-    let cardClone = new CardModel();
-    cardClone.cardId = card.cardId;
-    cardClone.link = card.link;
-    cardClone.toDelete = card.toDelete;
+  private copyCard(card) {
+    let cardClone = Object.assign({}, card);
     return cardClone;
   }
 }
