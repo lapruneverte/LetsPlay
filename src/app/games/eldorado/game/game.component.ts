@@ -50,11 +50,8 @@ export class GameComponent implements OnInit {
     return this.room.players.find( p => p.playerId === this.playerId);
   }
 
-  updatePlayers(player: PlayerModel) {
-    let index = this.room.players.findIndex(item => item.playerId === player.playerId);
-    this.room.players[index] = player;
-
-    this.firebaseService.updatePlayers(this.room.id, this.room.players);
+  updatePlayer(player: PlayerModel) {
+    this.firebaseService.updatePlayer(this.room.id, player);
   }
 
   closeZoom() {
@@ -62,15 +59,15 @@ export class GameComponent implements OnInit {
   }
 
   onZoom(event: ZoomModel){
-    /*this.zoomX = event.x;
-    this.zoomY = event.y;
-    this.zoomImageSrc = event.src;
-    this.zoom = true;*/
     const dialogRef = this.dialog.open(ZoomComponent, {
       data: {
         zoomImageSrc: event.src 
       }
     });
+  }
+
+  onSelectedTabChange(event) {
+    console.log(event);
   }
 
 }

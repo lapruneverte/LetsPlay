@@ -22,25 +22,49 @@ export class FirebaseService {
     return this.db.collection('rooms').doc(roomId).valueChanges();
   }
 
-  updateTokens(roomId: string, tokens: TokenModel[]) {
-    let roomRef = this.db.collection('rooms').doc(roomId);
-    return roomRef.update({
-      tokens: JSON.parse(JSON.stringify(tokens))
-    });
+  updateToken(roomId: string, token: TokenModel) {
+    let roomRef = this.db.firestore.collection('rooms').doc(roomId);
+    this.db.firestore.runTransaction(transaction => 
+      transaction.get(roomRef).then(updateRef => {
+        let tokens: TokenModel[] = updateRef.data().tokens;
+        let index = tokens.findIndex(item => item.color == token.color);
+        tokens[index] = token;
+
+        transaction.update(roomRef, {
+          tokens: JSON.parse(JSON.stringify(tokens))
+        });
+      })
+    );
   }
 
-  updatePlayers(roomId: string, players: PlayerModel[]) {
-    let roomRef = this.db.collection('rooms').doc(roomId);
-    return roomRef.update({
-      players: JSON.parse(JSON.stringify(players))
-    });
+  updatePlayer(roomId: string, player: PlayerModel) {
+    let roomRef = this.db.firestore.collection('rooms').doc(roomId);
+    this.db.firestore.runTransaction(transaction => 
+      transaction.get(roomRef).then(updateRef => {
+        let players: PlayerModel[] = updateRef.data().players;
+        let index = players.findIndex(item => item.playerId == player.playerId);
+        players[index] = player;
+
+        transaction.update(roomRef, {
+          players: JSON.parse(JSON.stringify(players))
+        });
+      })
+    );
   }
 
-  updateStore(roomId: string, store: StoreCardModel[]) {
-    let roomRef = this.db.collection('rooms').doc(roomId);
-    return roomRef.update({
-      store: JSON.parse(JSON.stringify(store))
-    });
+  updateStoreItem(roomId: string, storeItem: StoreCardModel) {
+    let roomRef = this.db.firestore.collection('rooms').doc(roomId);
+    this.db.firestore.runTransaction(transaction => 
+      transaction.get(roomRef).then(updateRef => {
+        let store: StoreCardModel[] = updateRef.data().store;
+        let index = store.findIndex(item => item.card.cardId == storeItem.card.cardId);
+        store[index] = storeItem;
+
+        transaction.update(roomRef, {
+          store: JSON.parse(JSON.stringify(store))
+        });
+      })
+    );
   }
 
   updateStoreLog(roomId: string, storeLog: StoreLogModel[]) {

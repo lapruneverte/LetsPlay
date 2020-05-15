@@ -1,4 +1,4 @@
-<div class="board-viewport">
+<div #boardViewport class="board-viewport" (scroll)="onScroll($event)">
     <div id="board" [ngStyle]="{'background-image': 'url(' + getImageUri() + ')', 'width': imgWidth + 'px', 'height': imgHeight + 'px'}">
         <div *ngFor="let token of room.tokens; let i = index" class="token-image" cdkDrag cdkDragBoundary="#board" [cdkDragFreeDragPosition]="token.position" (cdkDragEnded)="updateData($event,i)">
             <img [src]=token.link width="100%" height="100%">

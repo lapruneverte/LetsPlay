@@ -13,7 +13,7 @@
         <div class="col-3">
             <div class="player-container">
                 <p>Let's play user {{getPlayerData().name}}!</p>
-                <app-player [player]=getPlayerData() (playerChanged)=updatePlayers($event) (onZoom)="onZoom($event)"></app-player>
+                <app-player [player]=getPlayerData() (playerChanged)=updatePlayer($event) (onZoom)="onZoom($event)"></app-player>
             </div>
         </div>
     </div>

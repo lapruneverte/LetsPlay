@@ -7,6 +7,7 @@ import { PlayerModel } from '../../../core/models/player.model';
 import { StoreLogModel } from '../../../core/models/store-log.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/core/confirm-dialog/confirm-dialog.component';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-store',
@@ -53,8 +54,8 @@ export class StoreComponent implements OnInit {
           this.room.storeLog.unshift(storeLog);
     
           this.firebaseService.updateStoreLog(this.room.id, this.room.storeLog);
-          this.firebaseService.updatePlayers(this.room.id, this.room.players);
-          this.firebaseService.updateStore(this.room.id, this.room.store);
+          this.firebaseService.updatePlayer(this.room.id, player);
+          this.firebaseService.updateStoreItem(this.room.id, this.room.store[this.selectedCardIndex]);
         }
       }
     });
@@ -63,7 +64,7 @@ export class StoreComponent implements OnInit {
   updatePosition($event,i) {
     this.room.store[i].position.x = this.room.store[i].position.x + $event.distance.x;
     this.room.store[i].position.y = this.room.store[i].position.y + $event.distance.y;
-    this.firebaseService.updateStore(this.room.id, this.room.store);
+    this.firebaseService.updateStoreItem(this.room.id, this.room.store[i]);
   }
 
   zoomImage() {
