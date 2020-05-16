@@ -44,6 +44,7 @@ export class PlayerComponent implements OnInit {
   }
 
   showMenu(event: MouseEvent, i:number) {
+    event.preventDefault();
     if (event.view.innerWidth - event.x < 170) {
       this.menuX = event.x - 160;
     } else {
@@ -84,8 +85,8 @@ export class PlayerComponent implements OnInit {
     });
   }
 
-  moveFromHandToPreview() {
-    let card = this.player.inHand.splice(this.selectedCardIndex,1)[0];
+  moveFromHandToPreview(i: number) {
+    let card = this.player.inHand.splice(i, 1)[0];
     card.toDelete = false;
     this.player.preview.push(card);
     this.cardsChanged();
@@ -151,8 +152,6 @@ export class PlayerComponent implements OnInit {
   zoomImage() {
     this.closeMenu();
     let zoomData = new ZoomModel();
-    zoomData.x = this.menuX;
-    zoomData.y = this.menuY;
     zoomData.src = this.player.inHand[this.selectedCardIndex].link;
     this.onZoom.emit(zoomData);
   }

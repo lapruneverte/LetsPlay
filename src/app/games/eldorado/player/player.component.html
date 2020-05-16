@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col-12">
         <div class="center">
-            Blockades: <button class="btn btn-secondary btn-sm" (click)="subtractBlockade()">-</button>&nbsp;{{player.blockades}}&nbsp;<button class="btn btn-primary btn-sm" (click)="addBlockade()">+</button>
+            <span>Blockades: {{player.blockades}}</span>&nbsp;
+            <button class="btn btn-secondary btn-sm" (click)="subtractBlockade()">-</button>&nbsp;
+            <button class="btn btn-primary btn-sm" (click)="addBlockade()">+</button>
         </div>
     </div>
 </div>
@@ -9,7 +11,11 @@
     <div class="col-6">
         <div class="center">Draw pile: {{player.deck.length}}</div>
         <div class="deck center">
-            <app-deck [cards]="player.deck" [reverseImage]="player.cardBackside.link" (onPick)="putCardInHand($event)"></app-deck>
+            <app-deck [cards]="player.deck" 
+                [reverseImage]="player.cardBackside.link" 
+                (onPick)="putCardInHand($event)"
+                matTooltip="Click: Get Card">
+            </app-deck>
         </div>
     </div>
     <div class="col-6">
@@ -25,7 +31,11 @@
 <div class="row">
     <div class="center">Hand: {{player.inHand.length}}</div>
     <div *ngIf="player.inHand" class="cards-container">
-        <app-card *ngFor="let card of player.inHand; let i = index" (click)="showMenu($event, i)" [card]="card"></app-card>
+        <app-card *ngFor="let card of player.inHand; let i = index"
+            (click)="moveFromHandToPreview(i)" 
+            (contextmenu)="showMenu($event, i)" 
+            [card]="card"
+            matTooltip="Click: Play, Right click: More options"></app-card>
     </div>
 </div>
 <div class="row">
@@ -38,7 +48,6 @@
 </div>
 
 <ul (clickOutside)="onClickOutsideMenu($event)" class="dropdown-menu menu" [ngClass]="isMenuVisible ? 'show' : ''" [ngStyle]="{'left': menuX + 'px', 'top': menuY + 'px', 'position':'fixed'}">
-    <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreview()">Play</a></li>
     <li><a role="button" class="dropdown-item" (click)="moveFromHandToPreviewAndDelete()">Play and delete</a></li>
     <li><a role="button" class="dropdown-item" (click)="moveFromInHandToDeck()">To Deck</a></li>
     <li><a role="button" class="dropdown-item" (click)="zoomImage()">Zoom</a></li>

@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule} from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { MatCardModule } from '@angular/material/card';
@@ -44,7 +45,8 @@ import { StoreComponent } from './store/store.component';
     MatTabsModule,
     DragDropModule,
     ClickOutsideModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule
   ]
 })
 export class ElDoradoModule { }

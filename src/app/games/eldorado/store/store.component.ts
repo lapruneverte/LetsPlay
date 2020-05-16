@@ -67,37 +67,31 @@ export class StoreComponent implements OnInit {
     this.firebaseService.updateStoreItem(this.room.id, this.room.store[i]);
   }
 
-  zoomImage() {
-    this.closeMenu();
-    let zoomData = new ZoomModel();
+  zoomImage(card: CardModel) {
+    if (!this.dragged) {
+      let zoomData = new ZoomModel();
+      zoomData.src = card.link;
 
-    zoomData.x = this.menuX;
-    zoomData.y = this.menuY;
-    zoomData.src = this.room.store[this.selectedCardIndex].card.link;
-
-    this.onZoom.emit(zoomData);
-  }
-
-  zoomLogImage(card: CardModel) {
-    let zoomData = new ZoomModel();
-    zoomData.src = card.link;
-
-    this.onZoom.emit(zoomData);
+      this.onZoom.emit(zoomData);
+    }
+    event.stopPropagation();
+    this.dragged = false;
   }
 
   showMenu(event: MouseEvent, i:number) {
-    if (!this.dragged) {
-      if (event.view.innerWidth - event.x < 170) {
-        this.menuX = event.x - 160;
-      } else {
-        this.menuX = event.x;
-      }
-
-      this.menuY = event.y;
-      this.isMenuVisible = true;
-      this.selectedCardIndex = i;
-      this.lastTarget = event.target;
+    event.preventDefault();
+    
+    if (event.view.innerWidth - event.x < 170) {
+      this.menuX = event.x - 160;
+    } else {
+      this.menuX = event.x;
     }
+
+    this.menuY = event.y;
+    this.isMenuVisible = true;
+    this.selectedCardIndex = i;
+    this.lastTarget = event.target;
+
     event.stopPropagation();
     this.dragged = false;
   }
