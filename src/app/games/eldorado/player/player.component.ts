@@ -72,9 +72,16 @@ export class PlayerComponent implements OnInit {
   }
 
   moveFromInHandToDeck() {
-    this.player.deck.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
-    this.cardsChanged();
     this.closeMenu();
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Move to Deck', confirmMessage: 'Return the card to the deck?'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.player.deck.push(this.player.inHand.splice(this.selectedCardIndex,1)[0]);
+        this.cardsChanged();
+      }
+    });
   }
 
   moveFromHandToPreview() {
